@@ -1,0 +1,17 @@
+0000000000000000000000000000000000000000 ff86fa18e96dd7bf362a0537695ad2d5e155deb3 root <root@server1.wrapmotif.com> 1629209976 +0000	clone: from git@gitlab.com:client25/wrapstock-clone/wrapstock-admin.git
+ff86fa18e96dd7bf362a0537695ad2d5e155deb3 79b69d5b29216993f7920581813c43b523035c06 root <root@server1.wrapmotif.com> 1629285828 +0000	pull: Fast-forward
+79b69d5b29216993f7920581813c43b523035c06 b098e6f7deb09437f0adfd8b5e2f7a7a6aba1976 root <root@server1.wrapmotif.com> 1630077412 +0000	pull: Fast-forward
+b098e6f7deb09437f0adfd8b5e2f7a7a6aba1976 84cea0bd50fddf5c76c5fd3bd0f50460e3a0fe50 root <root@server1.wrapmotif.com> 1630082295 +0000	pull: Fast-forward
+84cea0bd50fddf5c76c5fd3bd0f50460e3a0fe50 09889de4ad31843c1b44e3227880ebd26e9a06da root <root@server1.wrapmotif.com> 1630368423 +0000	pull: Fast-forward
+09889de4ad31843c1b44e3227880ebd26e9a06da f5bdce4d641efd664f4c92f716b4ab495332e1b0 root <root@server1.wrapmotif.com> 1630754677 +0000	pull: Fast-forward
+f5bdce4d641efd664f4c92f716b4ab495332e1b0 99d7ec5c1a8a133e4542c4170439b17c7c92e36f root <root@server1.wrapmotif.com> 1631800661 +0000	pull: Fast-forward
+99d7ec5c1a8a133e4542c4170439b17c7c92e36f 7ee680541fc0d5e32865486cb9376eb671da2f39 root <root@server1.wrapmotif.com> 1631938636 +0000	pull: Fast-forward
+7ee680541fc0d5e32865486cb9376eb671da2f39 77f9f91305e7b8385d3b963bbb970978e0557429 root <root@server1.wrapmotif.com> 1632720519 +0000	pull: Fast-forward
+77f9f91305e7b8385d3b963bbb970978e0557429 2fde1b408ab463244c3c693eb7a042b7118250cf root <root@server1.wrapmotif.com> 1632841693 +0000	pull: Fast-forward
+2fde1b408ab463244c3c693eb7a042b7118250cf a65369c6685f270b35c77c763ad863576093d617 root <root@server1.wrapmotif.com> 1633007290 +0000	pull: Fast-forward
+a65369c6685f270b35c77c763ad863576093d617 c1dbd291bcc6108a4a03fa2a7a758880302fb309 root <root@server1.wrapmotif.com> 1633007572 +0000	pull: Fast-forward
+c1dbd291bcc6108a4a03fa2a7a758880302fb309 3d8f13382d61689ba853d05524ab264e24b7a62b root <root@server1.wrapmotif.com> 1636130234 +0000	pull: Fast-forward
+3d8f13382d61689ba853d05524ab264e24b7a62b aa9c994de419e29279e26219cb2e41febdf6f8fe root <root@server1.wrapmotif.com> 1636683943 +0000	pull: Fast-forward
+aa9c994de419e29279e26219cb2e41febdf6f8fe 6649122d362750304352655e24434443204ab0dd root <root@server1.wrapmotif.com> 1637595826 +0000	pull: Fast-forward
+6649122d362750304352655e24434443204ab0dd eb23a9b625c627a59ef3562f7de9f412605cd0c4 root <root@server1.wrapmotif.com> 1637647314 +0000	pull: Fast-forward
+eb23a9b625c627a59ef3562f7de9f412605cd0c4 eb23a9b625c627a59ef3562f7de9f412605cd0c4 root <root@server1.wrapmotif.com> 1651515794 +0000	checkout: moving from main to master
