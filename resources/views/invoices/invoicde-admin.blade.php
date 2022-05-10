@@ -28,7 +28,7 @@
 
             <div class="flex justify-between mt-4">
                 <!-- company info -->
-                <div class="w-full mr-4">
+                <div class="w-full mr-1">
                     <h5 class="font-bold">Sold By</h5>
                     <div class="border px-4 py-2">
                         <div class="text-sm">
@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- customer info -->
-                <div class="w-full ml-4">
+                <div class="w-full ml-1">
                     <h5 class="font-bold">Customer</h5>
                     <div class="border px-4 py-2">
                         <div class="text-sm">
