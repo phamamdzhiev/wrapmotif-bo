@@ -209,12 +209,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    var _this$$page$props$cus, _this$$page$props$cus2;
+    var _this$$page$props$how, _this$$page$props$how2;
 
     return {
       form: this.$inertia.form({
         image: null,
-        button: (_this$$page$props$cus = this.$page.props.custom) === null || _this$$page$props$cus === void 0 ? void 0 : (_this$$page$props$cus2 = _this$$page$props$cus.data) === null || _this$$page$props$cus2 === void 0 ? void 0 : _this$$page$props$cus2.button
+        button: (_this$$page$props$how = this.$page.props.howItWorks) === null || _this$$page$props$how === void 0 ? void 0 : (_this$$page$props$how2 = _this$$page$props$how.data) === null || _this$$page$props$how2 === void 0 ? void 0 : _this$$page$props$how2.button
       })
     };
   },

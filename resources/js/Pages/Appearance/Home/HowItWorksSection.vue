@@ -30,7 +30,7 @@ export default {
         return {
             form: this.$inertia.form({
                 image: null,
-                button: this.$page.props.custom?.data?.button,
+                button: this.$page.props.howItWorks?.data?.button,
             }),
         };
     },
