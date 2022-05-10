@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between mt-4">
+            <div class=" mt-4" style="display: block">
                 <!-- company info -->
                 <div class="w-full mr-1">
                     <h5 class="font-bold">Sold By</h5>
