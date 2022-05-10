@@ -79,7 +79,7 @@ class OtherPageController extends Controller
             'title'    => 'required|string|max:200',
             'title_universal'    => 'required|string|max:200',
             'subtitle' => 'required|string|max:200',
-            'subtitle_universal' => 'required|string|max:200',
+            'title_customer' => 'required|string|max:200',
             'customer'  =>  'required|string',
             'universal'  =>  'required|string',
 
@@ -96,7 +96,7 @@ class OtherPageController extends Controller
                         'title'    => $request->title,
                         'title_universal'    => $request->title_universal,
                         'subtitle' => $request->subtitle,
-                        'subtitle_universal' => $request->subtitle_universal,
+                        'title_customer' => $request->title_customer,
                         'customer'  => $request->customer,
                         'universal'  => $request->universal,
                     ]

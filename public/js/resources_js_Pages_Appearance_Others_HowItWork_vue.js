@@ -388,7 +388,7 @@ __webpack_require__.r(__webpack_exports__);
         title: (_this$$page$props$how = this.$page.props.howItWorks) === null || _this$$page$props$how === void 0 ? void 0 : (_this$$page$props$how2 = _this$$page$props$how.data) === null || _this$$page$props$how2 === void 0 ? void 0 : _this$$page$props$how2.title,
         title_universal: (_this$$page$props$how3 = this.$page.props.howItWorks) === null || _this$$page$props$how3 === void 0 ? void 0 : (_this$$page$props$how4 = _this$$page$props$how3.data) === null || _this$$page$props$how4 === void 0 ? void 0 : _this$$page$props$how4.title_universal,
         subtitle: (_this$$page$props$how5 = this.$page.props.howItWorks) === null || _this$$page$props$how5 === void 0 ? void 0 : (_this$$page$props$how6 = _this$$page$props$how5.data) === null || _this$$page$props$how6 === void 0 ? void 0 : _this$$page$props$how6.subtitle,
-        subtitle_universal: (_this$$page$props$how7 = this.$page.props.howItWorks) === null || _this$$page$props$how7 === void 0 ? void 0 : (_this$$page$props$how8 = _this$$page$props$how7.data) === null || _this$$page$props$how8 === void 0 ? void 0 : _this$$page$props$how8.subtitle_universal,
+        title_customer: (_this$$page$props$how7 = this.$page.props.howItWorks) === null || _this$$page$props$how7 === void 0 ? void 0 : (_this$$page$props$how8 = _this$$page$props$how7.data) === null || _this$$page$props$how8 === void 0 ? void 0 : _this$$page$props$how8.title_customer,
         customer: (_this$$page$props$how9 = this.$page.props.howItWorks) === null || _this$$page$props$how9 === void 0 ? void 0 : (_this$$page$props$how10 = _this$$page$props$how9.data) === null || _this$$page$props$how10 === void 0 ? void 0 : _this$$page$props$how10.customer,
         universal: (_this$$page$props$how11 = this.$page.props.howItWorks) === null || _this$$page$props$how11 === void 0 ? void 0 : (_this$$page$props$how12 = _this$$page$props$how11.data) === null || _this$$page$props$how12 === void 0 ? void 0 : _this$$page$props$how12.universal
       })
@@ -477,7 +477,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     form: _withId(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Title Customer"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "for": "title",
-        value: "Title (Customer)"
+        value: "Title"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
         id: "title",
         type: "text",
@@ -495,35 +495,15 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Title Universal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
-        "for": "title_universal",
-        value: "Title (Universal)"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
-        id: "title_universal",
-        type: "text",
-        "class": "mt-1 block w-full",
-        modelValue: $data.form.title_universal,
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.title_universal = $event;
-        }),
-        ref: "title_universal",
-        autocomplete: "title_universal"
-      }, null, 8
-      /* PROPS */
-      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
-        message: $data.form.errors.title_universal,
-        "class": "mt-2"
-      }, null, 8
-      /* PROPS */
-      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subtitle Customer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subtitle Customer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "for": "subtitle",
-        value: "Subtitle (Customer)"
+        value: "Subtitle"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
         id: "subtitle",
         type: "text",
         "class": "mt-1 block w-full",
         modelValue: $data.form.subtitle,
-        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return $data.form.subtitle = $event;
         }),
         ref: "subtitle",
@@ -535,23 +515,43 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subtitle Universal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
-        "for": "subtitle_universal",
-        value: "Subtitle (Universal)"
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Title Universal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+        "for": "title_universal",
+        value: "Title (Universal)"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
-        id: "subtitle_universal",
+        id: "title_universal",
         type: "text",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.subtitle_universal,
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-          return $data.form.subtitle_universal = $event;
+        modelValue: $data.form.title_universal,
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+          return $data.form.title_universal = $event;
         }),
-        ref: "subtitle_universal",
-        autocomplete: "subtitle_universal"
+        ref: "title_universal",
+        autocomplete: "title_universal"
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
-        message: $data.form.errors.subtitle_universal,
+        message: $data.form.errors.title_universal,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Title Customer"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+        "for": "title_customer",
+        value: "Title (Customer)"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
+        id: "title_customer",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.title_customer,
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return $data.form.title_customer = $event;
+        }),
+        ref: "subtitle_universal",
+        autocomplete: "title_customer"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+        message: $data.form.errors.title_customer,
         "class": "mt-2"
       }, null, 8
       /* PROPS */

@@ -11,5 +11,5 @@ class Service extends Enum
 {
     private const PRINTING_COMPANY               = 'printing';
     private const WRAPPING_COMPANY               = 'wrapping';
-    private const PRINTING_AND_WRAPPING_COMPANY  = 'printing_and_wrapping';
+    private const PRINTING_AND_WRAPPING_COMPANY  = 'printing_&_wrapping';
 }

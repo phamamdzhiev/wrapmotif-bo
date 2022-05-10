@@ -8,10 +8,17 @@
 			<template #form>
 				<!-- Title Customer-->
 				<div class="col-span-6 sm:col-span-4">
-					<jet-label for="title" value="Title (Customer)" />
+					<jet-label for="title" value="Title" />
 					<jet-input id="title" type="text" class="mt-1 block w-full" v-model="form.title" ref="title" autocomplete="title" />
 					<jet-input-error :message="form.errors.title" class="mt-2" />
 				</div>
+
+                <!-- Subtitle Customer -->
+                <div class="col-span-6 sm:col-span-4">
+                    <jet-label for="subtitle" value="Subtitle" />
+                    <jet-input id="subtitle" type="text" class="mt-1 block w-full" v-model="form.subtitle" ref="subtitle" autocomplete="subtitle" />
+                    <jet-input-error :message="form.errors.subtitle" class="mt-2" />
+                </div>
 
                 <!-- Title Universal-->
                 <div class="col-span-6 sm:col-span-4">
@@ -20,18 +27,13 @@
                     <jet-input-error :message="form.errors.title_universal" class="mt-2" />
                 </div>
 
-				<!-- Subtitle Customer -->
-				<div class="col-span-6 sm:col-span-4">
-					<jet-label for="subtitle" value="Subtitle (Customer)" />
-					<jet-input id="subtitle" type="text" class="mt-1 block w-full" v-model="form.subtitle" ref="subtitle" autocomplete="subtitle" />
-					<jet-input-error :message="form.errors.subtitle" class="mt-2" />
-				</div>
 
-                <!-- Subtitle Universal-->
+
+                <!-- Title Customer-->
                 <div class="col-span-6 sm:col-span-4">
-                    <jet-label for="subtitle_universal" value="Subtitle (Universal)" />
-                    <jet-input id="subtitle_universal" type="text" class="mt-1 block w-full" v-model="form.subtitle_universal" ref="subtitle_universal" autocomplete="subtitle_universal" />
-                    <jet-input-error :message="form.errors.subtitle_universal" class="mt-2" />
+                    <jet-label for="title_customer" value="Title (Customer)" />
+                    <jet-input id="title_customer" type="text" class="mt-1 block w-full" v-model="form.title_customer" ref="subtitle_universal" autocomplete="title_customer" />
+                    <jet-input-error :message="form.errors.title_customer" class="mt-2" />
                 </div>
 
 				<!--For Customer -->
@@ -74,7 +76,7 @@ export default {
                 title: this.$page.props.howItWorks?.data?.title,
                 title_universal: this.$page.props.howItWorks?.data?.title_universal,
 				subtitle: this.$page.props.howItWorks?.data?.subtitle,
-				subtitle_universal: this.$page.props.howItWorks?.data?.subtitle_universal,
+                title_customer: this.$page.props.howItWorks?.data?.title_customer,
 				customer: this.$page.props.howItWorks?.data?.customer,
 				universal: this.$page.props.howItWorks?.data?.universal,
 			}),
