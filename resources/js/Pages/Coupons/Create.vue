@@ -17,10 +17,17 @@
 					<jet-input-error :message="form.errors.code" class="mt-2" />
 				</div>
 
+                <!-- Coupon Type -->
+                <div class="mb-4">
+                    <jet-label for="amount_type" value="Coupon Type" />
+                    <jet-select id="amount_type" :options="types" track="value"  class="mt-1 block w-full" v-model="form.type" ref="type" autocomplete="type" @click="coupon_type = $event.target.value.charAt(0).toUpperCase() + $event.target.value.slice(1)"  />
+                    <jet-input-error :message="form.errors.type" class="mt-2" />
+                </div>
+
 				<!-- Coupon Amount -->
 				<div class="mb-4">
-					<jet-label for="amount" value="Coupon Amount" />
-					<jet-input id="amount" type="number" class="mt-1 block w-full" v-model="form.amount" ref="amount" autocomplete="amount" />
+					<jet-label for="amount" :value="'Coupon ' + coupon_type" />
+					<jet-input id="amount" type="number" class="mt-1 block w-full" v-model="form.amount" ref="amount" autocomplete="amount" :max="max_length" />
 					<jet-input-error :message="form.errors.amount" class="mt-2" />
 				</div>
 
@@ -66,6 +73,9 @@
 <script>
 export default {
 	name: "coupon-create",
+    props: {
+      types: Array,
+    },
 
 	data() {
 		return {
@@ -77,7 +87,10 @@ export default {
 				startFrom: null,
 				availableFrom: null,
 				availableTo: null,
+                type: null,
 			}),
+            coupon_type: 'Amount',
+            max_length: '',
 		};
 	},
 
@@ -86,6 +99,15 @@ export default {
 			this.form.post(route("coupons.store"));
 		},
 	},
+    watch: {
+        coupon_type(value){
+            if(value !== 'Amount'){
+                this.max_length = 100;
+            }else{
+                this.max_length = '';
+            }
+        }
+    }
 };
 </script>
 

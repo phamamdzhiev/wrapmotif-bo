@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CouponType;
 use App\Enums\PublishStatus;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
@@ -31,11 +33,13 @@ class CouponController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        return Inertia::render('Coupons/Create');
+        return Inertia::render('Coupons/Create', [
+            'types' => CouponType::toSelectOptions()
+        ]);
     }
 
     /**
@@ -51,12 +55,13 @@ class CouponController extends Controller
             'code'          => 'required|string|min:3|max:50|unique:coupons',
             'description'   => 'nullable|string|max:500',
             'amount'        => 'required|numeric|min:0',
+            'type'          => ['required', Rule::in(CouponType::toArray())],
             'startFrom'     => 'required|numeric|min:0',
             'availableFrom' => 'required|date',
             'availableTo'   => 'required|date|after:availableFrom',
         ]);
 
-        Coupon::create($request->only('name', 'code', 'amount', 'description', 'startFrom', 'availableFrom', 'availableTo'));
+        Coupon::create($request->only('name', 'code', 'amount', 'description', 'startFrom', 'availableFrom', 'availableTo', 'type'));
 
         session()->flash('flash.banner', 'Created successfullly.');
         session()->flash('flash.bannerStyle', 'success');
@@ -91,6 +96,7 @@ class CouponController extends Controller
 
         return Inertia::render('Coupons/Edit', [
             'coupon' => $coupon,
+            'types' => CouponType::toSelectOptions(),
         ]);
     }
 
@@ -111,12 +117,13 @@ class CouponController extends Controller
             'code'          => 'required|string|min:3|max:50|unique:coupons,id,' . $coupon->id,
             'description'   => 'nullable|string|max:500',
             'amount'        => 'required|numeric|min:0',
+            'type'          => ['required', Rule::in(CouponType::toArray())],
             'startFrom'     => 'required|numeric|min:0',
             'availableFrom' => 'required|date',
             'availableTo'   => 'required|date|after:availableFrom',
         ]);
 
-        $coupon->update($request->only('name', 'code', 'amount', 'description', 'startFrom', 'availableFrom', 'availableTo'));
+        $coupon->update($request->only('name', 'code', 'amount', 'description', 'startFrom', 'availableFrom', 'availableTo', 'type'));
 
         session()->flash('flash.banner', 'Updated successfullly.');
         session()->flash('flash.bannerStyle', 'success');

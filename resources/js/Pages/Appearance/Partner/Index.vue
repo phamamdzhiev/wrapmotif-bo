@@ -28,6 +28,34 @@
 					<jet-input-error :message="form.errors.content" class="mt-2" />
 				</div>
 
+                <!-- Sign up as partner page -->
+
+                <div class="col-span-6 sm:col-span-4">
+                    <h3>Sign up as partner page</h3>
+                </div>
+
+                <!-- Title -->
+                <div class="col-span-6 sm:col-span-4">
+                    <jet-label for="title_sign" value="Title (Second)" />
+                    <jet-input id="title_sign" type="text" class="mt-1 block w-full" v-model="form.title_sign" ref="title_sign" autocomplete="title_sign" />
+                    <jet-input-error :message="form.errors.title_sign" class="mt-2" />
+                </div>
+
+                <!-- Image -->
+                <div class="col-span-6 sm:col-span-4">
+                    <jet-label for="image_sign" value="Background image (Second)" />
+                    <jet-image-input :url="$page.props.partner?.secondaryMediaUrl" @change="handleImageChangeSing"></jet-image-input>
+                    <small class="mt-2 font-thin text-gray-400">* Image should be minimum 1920x1080 px. Maximum file size: 10MB/10240KB.</small>
+                    <jet-input-error :message="form.errors.image_sign" class="mt-2" />
+                </div>
+
+                <!--Page Content -->
+                <div class="col-span-12 sm:col-span-6 editor-container">
+                    <jet-label class="mb-2" for="content_sign" value="Page Content (Second)" />
+                    <QuillEditor v-model:content="form.content_sign" contentType="html" theme="snow" />
+                    <jet-input-error :message="form.errors.content_sign" class="mt-2" />
+                </div>
+
 			</template>
 
 			<template #actions>
@@ -35,6 +63,7 @@
 				<jet-button>Save</jet-button>
 			</template>
 		</jet-form-section>
+
 	</div>
 </template>
 
@@ -52,8 +81,11 @@ export default {
 		return {
 			form: this.$inertia.form({
 				title: this.$page.props.partner?.data?.title,
+				title_sign: this.$page.props.partner?.data?.title_sign,
 				image: null,
-				content: this.$page.props.partner?.data?.content,
+				image_sign: null,
+                content: this.$page.props.partner?.data?.content,
+                content_sign: this.$page.props.partner?.data?.content_sign,
 			}),
 		};
 	},
@@ -65,6 +97,9 @@ export default {
 		handleImageChange(image) {
 			this.form.image = image;
 		},
+        handleImageChangeSing(image) {
+            this.form.image_sign = image;
+        },
 	},
 };
 </script>

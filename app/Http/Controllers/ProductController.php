@@ -69,7 +69,7 @@ class ProductController extends Controller
             'images.*' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             'thumbnail'   => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'tags.*'   => 'required|integer',
-            'downloadable' => 'required|mimes:zip'
+            'downloadable' => 'required|mimes:zip',
         ]);
 
         DB::transaction(function () use ($request) {
@@ -155,7 +155,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
             'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             'tags.*'   => 'required|integer',
-            'downloadable' => 'nullable|mimes:zip'
+            'downloadable' => 'nullable|mimes:zip',
         ]);
 
 

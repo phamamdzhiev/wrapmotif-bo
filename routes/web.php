@@ -113,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('appearance/faqs', FaqController::class)->except('index', 'create', 'show', 'edit');
     Route::post('/appearance/others/terms-and-conditions', [OtherPageController::class, 'termsCondition'])->name('appearance.others.terms');
     Route::post('/appearance/others/how-It-Works', [OtherPageController::class, 'howItWork'])->name('appearance.others.howItWorks');
+    Route::post('/appearance/others/checkout', [OtherPageController::class, 'checkout'])->name('appearance.others.checkout');
 
     // Setting route
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
@@ -128,6 +129,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::post('/products/{product}/published', [ProductController::class, 'published'])->name('products.published');
     Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice');
+    Route::get('/orders/{order}/invoice-pdf', [OrderController::class, 'invoiceDownload'])->name('orders.invoice-pdf');
     Route::resource('orders', OrderController::class);
     Route::resource('customers', CustomerController::class)->only('index', 'show');
     Route::post('/customers/{customer}/update-status', [CustomerController::class, 'updateStatus'])->name('customers.update-status');

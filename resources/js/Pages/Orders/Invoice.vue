@@ -56,15 +56,15 @@
 							<div class="text-sm">
 
 								<div class="text-sm">
-									<p><span class="font-bold">Company: </span>{{ website.data.name }}</p>
+									<p>{{ website.data.name }}</p>
+                                    <p>
+                                        {{ website.data.street }} <br>
+                                        {{ website.data.zip }}
+                                        {{ website.data.city }}<br>
+                                        {{ website.data.country }}
+                                    </p>
 									<p><span class="font-bold">VAT No: </span>{{ website.data.vatNo }}</p>
-									<p>
-										<span class="font-bold">Address: </span>
-										{{ website.data.street }}
-										{{ website.data.city }} -
-										{{ website.data.zip }} ,
-										{{ website.data.country }}
-									</p>
+
 								</div>
 
 							</div>
@@ -76,18 +76,17 @@
 						<h5 class="font-bold">Customer</h5>
 						<div class="border px-4 py-2">
 							<div class="text-sm">
-								<p><span class="font-bold">Name: </span><span>{{ order.customer.name }}</span> <span>{{ order.customer.surname }}</span></p>
+								<p><span>{{ order.customer.name }}</span> <span>{{ order.customer.surname }}</span></p>
 								<div v-if="order.customer.companyName">
-									<p><span class="font-bold">Company Name: </span>{{ order.customer.companyName}}</p>
+									<p>{{ order.customer.companyName}}</p>
 								</div>
-								<p><span class="font-bold">VAT No: </span>{{ order.customer.euVatNo}}</p>
 								<p>
-									<span class="font-bold">Address: </span>
-									{{ order.customer.billingAddress.street }} ,
-									{{ order.customer.billingAddress.city }} -
-									{{ order.customer.billingAddress.zipcode }} ,
+									{{ order.customer.billingAddress.street }} <br>
+                                    {{ order.customer.billingAddress.zipcode }}
+									{{ order.customer.billingAddress.city }} <br>
 									{{ order.customer.billingAddress.country }}
 								</p>
+                                <p v-if="order.customer.companyName"><span class="font-bold" >VAT No: </span>{{ order.customer.euVatNo}}</p>
 							</div>
 						</div>
 					</div>
@@ -106,8 +105,8 @@
 									<th scope="col" class="px-6 py-5 text-left border-2 text-sm text-black uppercase font-bold">ID</th>
 									<th scope="col" class="px-6 py-5 text-left border-2 text-sm text-black uppercase font-bold">Item Name</th>
 									<th scope="col" class="px-6 py-5 text-right border-2 text-sm text-black uppercase font-bold">Quantity</th>
+									<th scope="col" class="px-6 py-5 text-right border-2 text-sm text-black uppercase font-bold">Unit price</th>
 									<th scope="col" class="px-6 py-5 text-right border-2 text-sm text-black uppercase font-bold">Price</th>
-									<th scope="col" class="px-6 py-5 text-right border-2 text-sm text-black uppercase font-bold">Total Price</th>
 
 								</tr>
 
@@ -125,7 +124,7 @@
 								</tr>
 
 								<tr>
-									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Subtotal</th>
+									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Amount</th>
 									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ order.customerAmountFormatted }}</td>
 								</tr>
 								<tr>
@@ -155,7 +154,7 @@
 			<div class="flex justify-center mt-auto">
 				<div class="">
 					<p class="text-xs">
-						Please contact us at info@wrapmotif.com with any questions.
+						Email us at info@wrapmotif.com with any questions.
 					</p>
 
 					<div class="flex justify-center my-3">

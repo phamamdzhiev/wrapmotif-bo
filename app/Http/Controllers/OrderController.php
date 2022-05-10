@@ -58,4 +58,11 @@ class OrderController extends Controller
 
         ]);
     }
+
+    public function invoiceDownload(Order $order)
+    {
+//        return view('invoices.invoicde-admin', ['order' => $order]);
+        $pdf = \PDF::loadView('invoices.invoicde-admin', ['order' => $order]);
+        return $pdf->stream('invoice.pdf');
+    }
 }

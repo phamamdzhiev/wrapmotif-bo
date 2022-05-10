@@ -107,6 +107,7 @@ class CustomOrderPageController extends Controller
     {
         $request->validate([
             'banner'      => 'nullable|image|mimes:jpg,jpeg,png|max:102400',
+            'description' => 'required|string',
         ]);
 
         DB::transaction(function () use ($request) {
@@ -115,7 +116,9 @@ class CustomOrderPageController extends Controller
                     'name' => AppearanceType::CUSTOM_ORDER()
                 ],
                 [
-                    'data' => [],
+                    'data' => [
+                        'description' => $request->description,
+                    ],
                 ]
 
             );

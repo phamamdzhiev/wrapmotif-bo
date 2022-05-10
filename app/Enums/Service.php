@@ -9,7 +9,7 @@ namespace App\Enums;
  */
 class Service extends Enum
 {
-    private const PRINTING_COMPANY               = 'printing_company';
-    private const WRAPPING_COMPANY               = 'wrapping_company';
-    private const PRINTING_AND_WRAPPING_COMPANY  = 'printing_and_wrapping_company';
+    private const PRINTING_COMPANY               = 'printing';
+    private const WRAPPING_COMPANY               = 'wrapping';
+    private const PRINTING_AND_WRAPPING_COMPANY  = 'printing_and_wrapping';
 }

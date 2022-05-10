@@ -30,6 +30,11 @@
                 <jet-input-error :message="form.errors.subtitle" class="mt-2" />
             </div>
 
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="hero_button" value="Button" />
+                <jet-input id="hero_button" type="text" class="mt-1 block w-full" v-model="form.button" ref="button" autocomplete="button" />
+                <jet-input-error :message="form.errors.button" class="mt-2" />
+            </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="description" value="Description" />
@@ -78,6 +83,7 @@ export default {
             form: this.$inertia.form({
                 title: this.$page.props.partner?.data?.title,
                 subtitle: this.$page.props.partner?.data?.subtitle,
+                button: this.$page.props.custom?.data?.button,
                 description: this.$page.props.partner?.data?.description,
                 show: true,
                 banner: null,

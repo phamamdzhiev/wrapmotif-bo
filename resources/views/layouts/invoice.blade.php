@@ -79,6 +79,80 @@
         color: #9e9e9e
     }
 
+    #print {
+        min-height: 10.5in;
+    }
+    h1, h2, h3, h4, h5, h6, p{
+        font-size: 14px;
+        margin: 5px;
+    }
+    .logo {
+        height: 45px;
+    }
+    .logoBottom {
+        height: 30px;
+    }
+    .justify-center {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        -webkit-box-pack: center;
+    }
+
+    .flex {
+        display: flex;
+        display: -webkit-flex;
+        width: 100%;
+    }
+    .mt-2 {
+        margin-top: 0.5rem;
+    }
+    .justify-between {
+        display: flex;
+        justify-content: space-between;
+    }
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+    .w-full {
+        width: 100%;
+    }
+    .border {
+        border: 1px solid #e8e8e8;
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .ml-4 {
+        margin-left: 1rem;
+    }
+    .mt-5 {
+        margin-top: 1.25rem;
+    }
+    .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    .font-bold {
+        font-weight: 700;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
 </style>
 
 <body>

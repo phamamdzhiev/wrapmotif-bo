@@ -15,6 +15,11 @@
 				<jet-input id="subtitle" type="text" class="mt-1 block w-full" v-model="form.subtitle" ref="subtitle" autocomplete="subtitle" />
 				<jet-input-error :message="form.errors.subtitle" class="mt-2" />
 			</div>
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="hero_button" value="Button" />
+                <jet-input id="hero_button" type="text" class="mt-1 block w-full" v-model="form.button" ref="button" autocomplete="button" />
+                <jet-input-error :message="form.errors.button" class="mt-2" />
+            </div>
 
 			<div class="col-span-6 sm:col-span-4">
 				<jet-label for="video" value="Video" />
@@ -47,6 +52,7 @@ export default {
 			form: this.$inertia.form({
 				title: this.$page.props.hero?.data?.title,
 				subtitle: this.$page.props.hero?.data?.subtitle,
+                button: this.$page.props.hero?.data?.button,
 				video: null,
 				poster: null,
 			}),

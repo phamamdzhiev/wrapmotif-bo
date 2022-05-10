@@ -52,6 +52,9 @@
                             <inertia-link class="btn btn-success mr-2" :href="route('orders.invoice', row.id)">
                                 <pdf-icon></pdf-icon>
                             </inertia-link>
+                            <a class="btn btn-primary mr-2" :href="route('orders.invoice-pdf', row.id)" target="_blank">
+                                <i class="ti-download mr-2"></i>
+                            </a>
 
                         </td>
                     </tr>

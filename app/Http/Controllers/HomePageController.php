@@ -36,6 +36,7 @@ class HomePageController extends Controller
         $request->validate([
             'title'    => 'required|string|max:100',
             'subtitle' => 'required|string|max:100',
+            'button' => 'required|string|max:100',
             'video'    => 'nullable|mimes:mp4,mov,ogg,avi|max:30720',
             'poster'   => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
         ]);
@@ -49,6 +50,7 @@ class HomePageController extends Controller
                     'data' => [
                         'title'    => $request->title,
                         'subtitle' => $request->subtitle,
+                        'button' => $request->button,
                     ]
                 ]
             );
@@ -108,6 +110,7 @@ class HomePageController extends Controller
         $request->validate([
             'title'       => 'required|string|max:100',
             'subtitle'    => 'required|string|max:100',
+            'button'    => 'required|string|max:100',
             'description' => 'required|string|max:500',
             'banner'      => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ]);
@@ -120,6 +123,7 @@ class HomePageController extends Controller
                 [
                     'data' => [
                         'title'       => $request->title,
+                        'button'       => $request->button,
                         'subtitle'    => $request->subtitle,
                         'description' => $request->description,
                     ]
@@ -145,6 +149,7 @@ class HomePageController extends Controller
         $request->validate([
             'title'       => 'required|string|max:100',
             'subtitle'    => 'required|string|max:100',
+            'button'    => 'required|string|max:100',
             'description' => 'required|string|max:500',
             'banner'      => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ]);
@@ -158,6 +163,7 @@ class HomePageController extends Controller
                     'data' => [
                         'title'       => $request->title,
                         'subtitle'    => $request->subtitle,
+                        'button'       => $request->button,
                         'description' => $request->description,
                     ]
                 ]
@@ -183,6 +189,7 @@ class HomePageController extends Controller
         $request->validate([
             'title'       => 'required|string|max:100',
             'subtitle'    => 'required|string|max:100',
+            'button'    => 'required|string|max:100',
             'description' => 'required|string|max:500',
             'show'        => 'required',
             'banner'      => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
@@ -197,6 +204,7 @@ class HomePageController extends Controller
                     'data' => [
                         'title'       => $request->title,
                         'subtitle'    => $request->subtitle,
+                        'button'       => $request->button,
                         'description' => $request->description,
                         'show'        => $request->show,
                     ]
@@ -220,7 +228,8 @@ class HomePageController extends Controller
     public function howItWorks(Request $request)
     {
         $request->validate([
-            'image' => 'nullable|mimes:jpg,jpeg,png|max:5120'
+            'image' => 'nullable|mimes:jpg,jpeg,png|max:5120',
+            'button'    => 'required|string|max:100',
         ]);
 
         DB::transaction(function () use ($request) {
@@ -229,7 +238,9 @@ class HomePageController extends Controller
                     'name' => AppearanceType::HOW_IT_WORKS()
                 ],
                 [
-                    'data' => []
+                    'data' => [
+                        'button'       => $request->button,
+                    ]
                 ]
             );
 

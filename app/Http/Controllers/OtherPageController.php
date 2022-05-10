@@ -26,6 +26,7 @@ class OtherPageController extends Controller
             'faqs'       => Faq::orderBy('id', 'desc')->get(),
             'terms'      => Appearance::where('name', AppearanceType::TERMS_CONDITIONS())->first() ?? null,
             'howItWorks' => Appearance::where('name', AppearanceType::HOW_IT_WORKS_PAGE())->first() ?? null,
+            'checkout' => Appearance::where('name', AppearanceType::CHECKOUT())->first() ?? null,
         ]);
     }
     /**
@@ -76,7 +77,9 @@ class OtherPageController extends Controller
         // dd($request->all());
         $request->validate([
             'title'    => 'required|string|max:200',
+            'title_universal'    => 'required|string|max:200',
             'subtitle' => 'required|string|max:200',
+            'subtitle_universal' => 'required|string|max:200',
             'customer'  =>  'required|string',
             'universal'  =>  'required|string',
 
@@ -91,7 +94,9 @@ class OtherPageController extends Controller
                 [
                     'data' => [
                         'title'    => $request->title,
+                        'title_universal'    => $request->title_universal,
                         'subtitle' => $request->subtitle,
+                        'subtitle_universal' => $request->subtitle_universal,
                         'customer'  => $request->customer,
                         'universal'  => $request->universal,
                     ]
@@ -100,6 +105,41 @@ class OtherPageController extends Controller
         });
 
         session()->flash('flash.banner', 'How it work content updated successfullly.');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('appearance.others');
+    }
+
+    /**
+     * Save notes of checkout pages
+     */
+    public function checkout(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'note_universal'  =>  'required|string',
+            'note_color'  =>  'required|string',
+            'note_preview'  =>  'required|string',
+
+
+        ]);
+
+        DB::transaction(function () use ($request) {
+            Appearance::updateOrCreate(
+                [
+                    'name' => AppearanceType::CHECKOUT()
+                ],
+                [
+                    'data' => [
+                        'note_universal'    => $request->note_universal,
+                        'note_color'    => $request->note_color,
+                        'note_preview' => $request->note_preview,
+                    ]
+                ]
+            );
+        });
+
+        session()->flash('flash.banner', 'Checkout notes updated successfullly.');
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('appearance.others');

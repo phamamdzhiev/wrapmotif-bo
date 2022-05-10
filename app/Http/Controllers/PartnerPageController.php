@@ -29,7 +29,10 @@ class PartnerPageController extends Controller
         $request->validate([
             'title'    => 'required|string|max:100',
             'content'  => 'required|string',
-            'image'    => 'nullable|image|mimes:png,jpg,jpeg|max:10240'
+            'image'    => 'nullable|image|mimes:png,jpg,jpeg|max:10240',
+            'title_sign'    => 'required|string|max:100',
+            'content_sign'  => 'required|string',
+            'image_sign'    => 'nullable|image|mimes:png,jpg,jpeg|max:10240'
         ]);
 
         DB::transaction(function () use ($request) {
@@ -40,7 +43,9 @@ class PartnerPageController extends Controller
                 [
                     'data' => [
                         'title'    => $request->title,
-                        'content'  => $request->content,
+                        'content'  => $request->get('content'),
+                        'title_sign'    => $request->title_sign,
+                        'content_sign'  => $request->content_sign,
                     ]
                 ]
             );
@@ -48,6 +53,11 @@ class PartnerPageController extends Controller
             if ($request->file('image')) {
                 $partner->addMedia($request->image)->toMediaCollection('primary');
             }
+
+            if ($request->file('image_sign')) {
+                $partner->addMedia($request->image_sign)->toMediaCollection('secondary');
+            }
+
         });
 
         session()->flash('flash.banner', 'Updated successfullly.');

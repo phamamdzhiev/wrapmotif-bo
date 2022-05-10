@@ -52,6 +52,16 @@
 				</div>
 			</div>
 
+            <!-- Coupon Type -->
+            <div class="flex border-b -mx-6 px-6">
+                <div class="w-1/4 py-4">
+                    <h4 class="font-normal text-80">Coupon Type</h4>
+                </div>
+                <div class="w-3/4 py-4 break-words">
+                    <p class="text-90">{{ beautify(coupon.type) }}</p>
+                </div>
+            </div>
+
 			<!-- Coupon Amount -->
 			<div class="flex border-b -mx-6 px-6">
 				<div class="w-1/4 py-4">
@@ -123,6 +133,11 @@ export default {
 	props: {
 		coupon: Object,
 	},
+    methods: {
+        beautify(value) {
+            return value.replaceAll("_", " ");
+        },
+    },
 };
 </script>
 

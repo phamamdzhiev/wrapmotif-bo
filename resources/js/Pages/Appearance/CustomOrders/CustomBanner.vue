@@ -10,6 +10,19 @@
                  <small class="mt-1 font-thin text-gray-400">* Image should be minimum 1920x1080 px. Maximum file size: 100MB/102400KB.</small>
 				<jet-input-error :message="form.errors.banner" class="mt-2" />
 			</div>
+            <!--For Description -->
+            <div class="col-span-12 sm:col-span-6">
+                <jet-label for="description" value="Description for custome page" />
+                <jet-text-input
+                    id="description"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.description"
+                    ref="description"
+                    autocomplete="description"
+                />
+                <jet-input-error :message="form.errors.description"/>
+            </div>
 		</template>
 
 		<template #actions>
@@ -25,6 +38,7 @@ export default {
 		return {
 			form: this.$inertia.form({
 				banner: null,
+                description: this.$page.props.banner?.data?.description,
 			}),
 		};
 	},

@@ -10,6 +10,11 @@
                  <small class="mt-1 font-thin text-gray-400">* Image should be minimum 1920x1080 px. Maximum file size: 10MB/10240KB.</small>
                 <jet-input-error :message="form.errors.image" class="mt-2" />
             </div>
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="hero_button" value="Button" />
+                <jet-input id="hero_button" type="text" class="mt-1 block w-full" v-model="form.button" ref="button" autocomplete="button" />
+                <jet-input-error :message="form.errors.button" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -24,7 +29,8 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                image: null
+                image: null,
+                button: this.$page.props.custom?.data?.button,
             }),
         };
     },
