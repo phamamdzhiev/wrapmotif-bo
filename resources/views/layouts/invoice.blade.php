@@ -97,7 +97,6 @@
 
     .w-45{
         display: inline-grid;
-        grid-row-start: 1;
         width: 49% !important;
     }
     .w-full {
