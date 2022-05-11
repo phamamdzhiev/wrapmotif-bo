@@ -5,7 +5,7 @@
     <div class="header">
         <!-- Logo -->
         <div class="logo-center">
-            <img src="{{ \App\Facades\Helper::getLightLogo() }}" style="width:200px">
+            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" style="width:200px">
         </div>
     </div>
     <div class="clearfix"></div>
@@ -26,7 +26,7 @@
         <!-- company info -->
         <div class="company ">
             <h5 class="font-bold">Sold By</h5>
-            <div class="border px-4 py-2 w-45">
+            <div class=" px-4 py-2 ">
                 <span>{{ \App\Facades\Helper::getAppName() }}</span>
                 <span>
                     {{ \App\Facades\Helper::getStreet() }}<br>
@@ -41,7 +41,7 @@
         <!-- customer info -->
         <div class="customer ">
             <h5 class="font-bold">Customer</h5>
-            <div class="border px-4 py-2 w-45">
+            <div class=" px-4 py-2 ">
                 <span>{{ $order->customer->name }} {{ $order->customer->surname }}</span>
                 <br>
                 @if($order->customer->companyName)
@@ -123,7 +123,7 @@
             </p>
 
             <div class="flex justify-center my-3">
-                <img class="logo" src="{{ \App\Facades\Helper::getLightLogo() }}" alt="logo" style="width:200px" />
+                <img class="logo" src="{{ \App\Facades\Helper::getDarkLogo() }}" alt="logo" style="width:200px" />
             </div>
             <p class="text-xs mt-1 text-center">
                 www.wrapmotif.com
