@@ -144,7 +144,7 @@
 
     .bottom{
         position: fixed;
-        bottom: 5%;
+        bottom: 8%;
         left: 50%;
         transform: translateX(-50%);
     }
