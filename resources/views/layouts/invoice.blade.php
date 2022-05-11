@@ -96,7 +96,7 @@
 
 
     .w-45{
-        /*display: inline-flex;*/
+        display: inline-flex;
         width: 49% !important;
     }
     .w-full {

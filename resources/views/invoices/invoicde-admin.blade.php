@@ -24,7 +24,7 @@
     <div class="clearfix"></div>
     <div class="info">
         <!-- company info -->
-        <div class="company w-45">
+        <div class="company">
             <h5 class="font-bold">Sold By</h5>
             <div class="border px-4 py-2">
                 <span>{{ \App\Facades\Helper::getAppName() }}</span>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- customer info -->
-        <div class="customer w-45">
+        <div class="customer">
             <h5 class="font-bold">Customer</h5>
             <div class="border px-4 py-2 text-left">
                 <span>{{ $order->customer->name }} {{ $order->customer->surname }}</span>
