@@ -5,7 +5,7 @@
     <div class="header">
         <!-- Logo -->
         <div class="logo-center">
-            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" style="width:200px">
+            <img src="{{ \App\Facades\Helper::getLightLogo() }}" style="width:200px">
         </div>
     </div>
     <div class="clearfix"></div>
@@ -123,7 +123,7 @@
             </p>
 
             <div class="flex justify-center my-3">
-                <img class="logo" src="{{ \App\Facades\Helper::getDarkLogo() }}" alt="logo" style="width:200px" />
+                <img class="logo" src="{{ \App\Facades\Helper::getLightLogo() }}" alt="logo" style="width:200px" />
             </div>
             <p class="text-xs mt-1 text-center">
                 www.wrapmotif.com
