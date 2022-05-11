@@ -96,7 +96,7 @@
 
 
     .w-45{
-        width: 44% !important;
+        width: 49% !important;
     }
     .m-right{
         margin-right: auto
@@ -139,7 +139,7 @@
         text-align: right;
     }
     .text-left{
-        text-align: left;
+        text-align: left !important;
     }
 </style>
 
