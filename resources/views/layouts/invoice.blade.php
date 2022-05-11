@@ -96,8 +96,13 @@
 
 
     .w-45{
-        display: block;
-        width: 49% !important;
+        width: 44% !important;
+    }
+    .m-right{
+        margin-right: auto
+    }
+    .m-left{
+        margin-left: auto
     }
     .w-full {
         width: 100%;
