@@ -119,7 +119,7 @@
 									<td class="px-6 py-4 border-2 whitespace-nowrap">
 										{{ index + 1 }}
 									</td>
-									<td class="px-6 py-4 border-2 whitespace-nowrap">{{ orderItem.productId }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap">{{ orderItem.product.sku }}</td>
 									<td class="px-6 py-4 border-2 whitespace-nowrap">{{ orderItem.product.name }}</td>
 									<td class="px-6 py-4 border-2 whitespace-nowrap text-right">1</td>
 									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(orderItem.customerAmount, orderItem.customerCurrency) }}</td>

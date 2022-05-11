@@ -84,7 +84,7 @@
                     <td class="px-6 py-4 border-2 whitespace-nowrap">
                         {{ $key + 1 }}
                     </td>
-                    <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->productId }}</td>
+                    <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->product->sku }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->product->name }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap text-right">1</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($orderItem->customer_amount, 2) }}</td>
