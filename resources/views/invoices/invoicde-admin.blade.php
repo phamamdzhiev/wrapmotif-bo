@@ -41,7 +41,7 @@
         <!-- customer info -->
         <div class="customer">
             <h5 class="font-bold">Customer</h5>
-            <div class="border px-4 py-2 text-left">
+            <div class="border px-4 py-2">
                 <span>{{ $order->customer->name }} {{ $order->customer->surname }}</span>
                 <br>
                 @if($order->customer->companyName)
