@@ -24,9 +24,9 @@
     <div class="clearfix"></div>
     <div class="info">
         <!-- company info -->
-        <div class="company w-45">
+        <div class="company ">
             <h5 class="font-bold">Sold By</h5>
-            <div class="border px-4 py-2">
+            <div class="border px-4 py-2 w-45">
                 <span>{{ \App\Facades\Helper::getAppName() }}</span>
                 <span>
                     {{ \App\Facades\Helper::getStreet() }}<br>
@@ -39,9 +39,9 @@
         </div>
 
         <!-- customer info -->
-        <div class="customer w-45">
+        <div class="customer ">
             <h5 class="font-bold">Customer</h5>
-            <div class="border px-4 py-2">
+            <div class="border px-4 py-2 w-45">
                 <span>{{ $order->customer->name }} {{ $order->customer->surname }}</span>
                 <br>
                 @if($order->customer->companyName)
