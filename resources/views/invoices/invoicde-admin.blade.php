@@ -18,7 +18,8 @@
         </div>
         <div class="customer">
             <span>Order receipt</span>
-            <span class="font-bold">{{ $order->id }} </span>
+            <br>
+            <span class="font-bold">{{ $order->invoiceNo }} </span>
         </div>
     </div>
     <div class="info ">
@@ -86,28 +87,28 @@
                     <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->productId }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->product->name }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap text-right">1</td>
-                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ $orderItem->customerAmountFormatted }}</td>
-                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ $orderItem->customerAmountFormatted }}</td>
+                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($orderItem->customer_amount, 2) }}</td>
+                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($orderItem->customer_amount, 2) }}</td>
                 </tr>
             @endforeach
 
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Amount</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ $order->customerAmountFormatted }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_amount, 2) }}</td>
             </tr>
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">VAT ({{ $order->vat }} {{ $order->vatType }})</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ $order->customerVatAmountFormatted }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->vat_amount, 2) }}</td>
             </tr>
 
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Discount (-)</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ $order->customerTotalDiscountFormatted }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_total_discount, 2) }}</td>
             </tr>
 
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">TOTAL</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ $order->customerGrandTotalFormatted }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_grand_total, 2)  }}</td>
             </tr>
 
             </tbody>
@@ -115,7 +116,7 @@
     </div>
 
     <!-- footer -->
-    <div class="justify-center footer">
+    <div class="justify-center footer bottom">
         <div class="">
             <p class="text-xs">
                 Email us at info@wrapmotif.com with any questions

@@ -18,6 +18,7 @@ class OrderObserver
     public function created(Order $order)
     {
         // Send notification to customer
+
         OrderCompletedJob::dispatch($order);
         // Send notification to admin user
         NotifyUserJob::dispatch($order);

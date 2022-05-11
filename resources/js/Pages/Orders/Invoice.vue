@@ -14,6 +14,9 @@
 						<button class="btn btn-success mr-2" @click="print('print')">
 							<span class="ti-printer mr-2"></span> <span> Print</span>
 						</button>
+                        <a class="btn btn-primary mr-2" :href="route('orders.invoice-pdf', order.id)" target="_blank">
+                            <i class="ti-download mr-2"></i> <span> Download</span>
+                        </a>
 
 						<inertia-link class="btn btn-primary mr-2" :href="route('orders.index')">
 							<i class="ti-arrow-left"></i>
@@ -86,7 +89,7 @@
 									{{ order.customer.billingAddress.city }} <br>
 									{{ order.customer.billingAddress.country }}
 								</p>
-                                <p v-if="order.customer.companyName"><span class="font-bold" >VAT No: </span>{{ order.customer.euVatNo}}</p>
+                                <p v-if="order.customer.companyName && euCountries.includes(order.customer.billingAddress.country)"><span class="font-bold" >VAT No: </span>{{ order.customer.euVatNo}}</p>
 							</div>
 						</div>
 					</div>
@@ -119,27 +122,27 @@
 									<td class="px-6 py-4 border-2 whitespace-nowrap">{{ orderItem.productId }}</td>
 									<td class="px-6 py-4 border-2 whitespace-nowrap">{{ orderItem.product.name }}</td>
 									<td class="px-6 py-4 border-2 whitespace-nowrap text-right">1</td>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ orderItem.customerAmountFormatted }}</td>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ orderItem.customerAmountFormatted }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(orderItem.customerAmount, orderItem.customerCurrency) }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(orderItem.customerAmount, orderItem.customerCurrency) }}</td>
 								</tr>
 
 								<tr>
 									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Amount</th>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ order.customerAmountFormatted }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(order.customerAmount, order.customerCurrency) }}</td>
 								</tr>
 								<tr>
 									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">VAT ({{ order.vat }} {{ order.vatType }})</th>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ order.customerVatAmountFormatted }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(order.vatAmount, order.customerCurrency) }}</td>
 								</tr>
 
 								<tr>
 									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Discount (-)</th>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ order.customerTotalDiscountFormatted }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ currencySymbol(order.customerTotalDiscount, order.customerCurrency) }}</td>
 								</tr>
 
 								<tr>
 									<th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">TOTAL</th>
-									<td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ order.customerGrandTotalFormatted }}</td>
+									<td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ currencySymbol(order.customerGrandTotal, order.customerCurrency) }}</td>
 								</tr>
 
 							</tbody>
@@ -177,6 +180,13 @@ import Button from "@/Jetstream/Button.vue";
 export default {
 	components: { Button },
 	name: "order-invoice",
+    data(){
+        return {
+            euCountries: [
+                "Austria", "Belgium", "Bulgaria", "Croatia", "Republic of Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain and Sweden"
+            ]
+        };
+    },
 	props: {
 		order: Object,
 		website: Object,
@@ -212,7 +222,20 @@ export default {
 			}, 500);
 			return false;
 		},
+        currencySymbol(value, currency){
+            if (currency === "EUR") {
+                // return "€ " + Math.ceil(value);
+                return "€ " + this.roundToTwo(value);
+            } else {
+                // return "$ " + Math.ceil(value);
+                return "$ " + this.roundToTwo(value);
+            }
+        },
+        roundToTwo(num) {
+            return +(Math.round(num + "e+2")  + "e-2");
+        }
 	},
+
 };
 </script>
 

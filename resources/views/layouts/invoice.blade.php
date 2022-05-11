@@ -141,6 +141,13 @@
     .text-left{
         text-align: left !important;
     }
+
+    .bottom{
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 </style>
 
 <body>
