@@ -11,12 +11,12 @@
     <div class="clearfix"></div>
 
     <div class="info">
-        <div class="company w-45">
+        <div class="company">
             <span>Date of issue:</span>
             <br />
             <span>{{ $order->dateFormatted }} </span>
         </div>
-        <div class="customer w-45">
+        <div class="customer">
             <span>Order receipt</span>
             <span class="font-bold">{{ $order->id }} </span>
         </div>
