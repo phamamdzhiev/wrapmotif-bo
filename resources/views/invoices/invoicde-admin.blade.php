@@ -1,7 +1,11 @@
 @extends('layouts.invoice')
 
 @section('content')
-
+    @php
+        $countries = [
+                "Austria", "Belgium", "Bulgaria", "Croatia", "Republic of Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain and Sweden"
+            ];
+    @endphp
     <div class="header">
         <!-- Logo -->
         <div class="logo-center">
@@ -48,16 +52,17 @@
                     <span>{{ $order->customer->companyName}}</span>
                     <br>
                 @endif
-
-                <span><span class="font-bold">VAT No: </span>{{ $order->customer->euVatNo}}</span>
-                <br>
                 <span>
-                    <span class="font-bold">Address: </span>
                     {{ $order->customer->billingAddress['street'] }}<br>
                     {{ $order->customer->billingAddress['zipcode'] }}
                     {{ $order->customer->billingAddress['city'] }} <br>
                     {{ $order->customer->billingAddress['country'] }}
                 </span>
+                @if($order->customer->companyName && in_array($order->customer->billingAddress['country'], $countries))
+                    <span><span class="font-bold">VAT No: </span>{{ $order->customer->euVatNo}}</span>
+                @endif
+
+                <br>
 
             </div>
         </div>
