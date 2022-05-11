@@ -93,10 +93,7 @@
     .mt-2 {
         margin-top: 0.5rem;
     }
-    .d-table{
-        display: block;
-        padding-top: 30px;
-    }
+
 
     .w-45{
         display: inline-grid;

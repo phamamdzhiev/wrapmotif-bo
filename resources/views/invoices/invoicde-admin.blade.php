@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="d-table">
+    <div class="info">
         <!-- company info -->
         <div class="company w-45">
             <h5 class="font-bold">Sold By</h5>
