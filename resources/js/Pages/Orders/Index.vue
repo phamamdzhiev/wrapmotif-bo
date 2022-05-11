@@ -57,6 +57,7 @@
                             </a>
 
                         </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -74,7 +75,7 @@ import throttle from "lodash/throttle";
 import Button from "../../Jetstream/Button.vue";
 import PdfIcon from "@/Icons/PdfIcon.vue";
 export default {
-    components: { Button, PdfIcon },
+    components: {Button, PdfIcon },
     name: "orders",
     props: {
         orders: Object,

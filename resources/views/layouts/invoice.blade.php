@@ -23,6 +23,13 @@
         float: left;
     }
 
+    .header .logo-center {
+        text-align: center;
+    }
+
+    .header .logo-center img {
+        height: 60px;
+    }
     .header .logo img {
         height: 60px;
     }
@@ -79,41 +86,22 @@
         color: #9e9e9e
     }
 
-    #print {
-        min-height: 10.5in;
-    }
     h1, h2, h3, h4, h5, h6, p{
         font-size: 14px;
         margin: 5px;
     }
-    .logo {
-        height: 45px;
-    }
-    .logoBottom {
-        height: 30px;
-    }
-    .justify-center {
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        -webkit-box-pack: center;
-    }
-
-    .flex {
-        display: flex;
-        display: -webkit-flex;
-        width: 100%;
-    }
     .mt-2 {
         margin-top: 0.5rem;
     }
-    .justify-between {
-        display: flex;
-        justify-content: space-between;
+    .d-table{
+        display: block;
+        padding-top: 30px;
     }
-    .flex-col {
-        display: flex;
-        flex-direction: column;
+
+    .w-45{
+        display: inline-grid;
+        grid-row-start: 1;
+        width: 49% !important;
     }
     .w-full {
         width: 100%;
@@ -125,6 +113,10 @@
         text-align: center;
     }
 
+    .py-1 {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
     .py-2 {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
@@ -139,19 +131,14 @@
     .mt-5 {
         margin-top: 1.25rem;
     }
-    .text-sm {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
     .font-bold {
         font-weight: 700;
     }
     .text-right {
         text-align: right;
     }
-    .text-sm {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
+    .text-left{
+        text-align: left;
     }
 </style>
 
