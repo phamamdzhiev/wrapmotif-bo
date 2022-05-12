@@ -9,7 +9,7 @@
     <div class="header">
         <!-- Logo -->
         <div class="logo-center">
-            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" class="logo" style="width:200px">
+            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" style="height:200px">
         </div>
     </div>
     <div class="clearfix"></div>
@@ -128,7 +128,7 @@
             </p>
 
             <div class="flex justify-center my-3">
-                <img class="logo" src="{{ asset('images/Black favicon-01.png') }}" alt="logo" style="width:200px" />
+                <img class="logo" src="{{ asset('images/Black favicon-01.png') }}" alt="logo" style="height:30px" />
             </div>
             <p class="text-xs mt-1 text-center">
                 www.wrapmotif.com
