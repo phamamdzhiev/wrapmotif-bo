@@ -31,14 +31,15 @@
         <div class="company w-45 m-right ">
             <h5 class="font-bold">Sold By</h5>
             <div class="border  px-4 py-2 ">
-                <span>{{ \App\Facades\Helper::getAppName() }}</span>
+                <span>{{ \App\Facades\Helper::getAppName() }}</span><br>
                 <span>
                     {{ \App\Facades\Helper::getStreet() }}<br>
                     {{ \App\Facades\Helper::getZipcode() }}
                     {{ \App\Facades\Helper::getCity() }}<br>
                     {{ \App\Facades\Helper::getCountry() }}
                 </span>
-                <span>{{ $order->customer->euVatNo}}</span>
+                <br>
+                <span><span class="font-bold">VAT No: </span>{{ \App\Facades\Helper::getVatNo() }}</span>
             </div>
         </div>
 

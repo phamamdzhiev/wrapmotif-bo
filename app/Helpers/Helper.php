@@ -31,7 +31,7 @@ class Helper
 
     /**
      * Get the application name
-     * 
+     *
      * @return string
      */
     public function getAppName()
@@ -41,7 +41,7 @@ class Helper
 
     /**
      * Get the application email
-     * 
+     *
      * @return string
      */
     public function getAppEmail()
@@ -51,7 +51,7 @@ class Helper
 
     /**
      * Get the application street address
-     * 
+     *
      * @return string
      */
     public function getStreet()
@@ -61,7 +61,7 @@ class Helper
 
     /**
      * Get the application city address
-     * 
+     *
      * @return string
      */
     public function getCity()
@@ -71,7 +71,7 @@ class Helper
 
     /**
      * Get the application zipcode address
-     * 
+     *
      * @return string
      */
     public function getZipcode()
@@ -81,7 +81,7 @@ class Helper
 
     /**
      * Get the application street address
-     * 
+     *
      * @return string
      */
     public function getCountry()
@@ -91,7 +91,7 @@ class Helper
 
     /**
      * Get the application light logo
-     * 
+     *
      * @return string
      */
     public function getLightLogo()
@@ -101,12 +101,22 @@ class Helper
 
     /**
      * Get the application dark logo
-     * 
+     *
      * @return string
      */
     public function getDarkLogo()
     {
         return Settings::where('name', SettingsType::WEBSITE())->first() ? Settings::where('name', SettingsType::WEBSITE())->first()->secondaryMediaUrl : null;
+    }
+
+    /**
+     * Get the VAT no company
+     *
+     * @return string
+     */
+    public function getVatNo()
+    {
+        return Settings::where('name', SettingsType::WEBSITE())->first() ? Settings::where('name', SettingsType::WEBSITE())->first()->data['vatNo'] : null;
     }
 
     /**
