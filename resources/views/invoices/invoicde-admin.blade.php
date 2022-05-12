@@ -9,7 +9,7 @@
     <div class="header">
         <!-- Logo -->
         <div class="logo-center">
-            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" style="height:200px">
+            <img src="{{ \App\Facades\Helper::getDarkLogo() }}" style="width:200px">
         </div>
     </div>
     <div class="clearfix"></div>
