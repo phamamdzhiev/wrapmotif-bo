@@ -93,31 +93,31 @@
                     <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->product->sku }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap">{{ $orderItem->product->name }}</td>
                     <td class="px-6 py-4 border-2 whitespace-nowrap text-right">1</td>
-                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($orderItem->customer_amount, 2) }}</td>
-                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($orderItem->customer_amount, 2) }}</td>
+                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . number_format($orderItem->customer_amount, 2, ',') }}</td>
+                    <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($orderItem->customer_currency === "EUR" ? "€ " : "$") . number_format($orderItem->customer_amount, 2, ',') }}</td>
                 </tr>
             @endforeach
 
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Amount</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_amount, 2) }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . number_format($order->customer_amount, 2, ',') }}</td>
             </tr>
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Discount (-)</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_total_discount, 2) }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . number_format($order->customer_total_discount, 2, ',') }}</td>
             </tr>
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">Subtotal</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format(($order->customer_amount - $order->customer_total_discount), 2) }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . number_format(($order->customer_amount - $order->customer_total_discount), 2, ',') }}</td>
             </tr>
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">VAT ({{ $order->vat }} {{ $order->vatType }})</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->vat_amount, 2) }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right"> {{ ($order->customer_currency === "EUR" ? "€ " : "$") . number_format($order->vat_amount, 2, ',') }}</td>
             </tr>
 
             <tr>
                 <th scope="col" colspan="5" class="px-6 py-5 text-right text-sm text-black uppercase font-bold">TOTAL</th>
-                <td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ ($order->customer_currency === "EUR" ? "€ " : "$") . (float)number_format($order->customer_grand_total, 2)  }}</td>
+                <td class="px-6 py-4 border-2 whitespace-nowrap text-right">{{ ($order->customer_currency === "EUR" ? "€ " : "$") . number_format($order->customer_grand_total, 2, ',')  }}</td>
             </tr>
 
             </tbody>
