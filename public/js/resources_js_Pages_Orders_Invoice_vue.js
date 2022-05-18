@@ -53,14 +53,24 @@ __webpack_require__.r(__webpack_exports__);
     currencySymbol: function currencySymbol(value, currency) {
       if (currency === "EUR") {
         // return "€ " + Math.ceil(value);
-        return "€ " + this.roundToTwo(value);
+        return "€ " + this.formatNumber(value);
       } else {
         // return "$ " + Math.ceil(value);
-        return "$ " + this.roundToTwo(value);
+        return "$ " + this.formatNumber(value);
       }
     },
-    roundToTwo: function roundToTwo(num) {
-      return +(Math.round(num + "e+2") + "e-2");
+    formatNumber: function formatNumber(number) {
+      number = number.toFixed(2) + '';
+      var x = number.split('.');
+      var x1 = x[0];
+      var x2 = x.length > 1 ? '.' + x[1] : '';
+      var rgx = /(\d+)(\d{3})/;
+
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+      }
+
+      return x1 + x2;
     }
   }
 });

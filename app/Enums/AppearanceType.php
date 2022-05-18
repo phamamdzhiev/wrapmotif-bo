@@ -13,6 +13,7 @@ namespace App\Enums;
  * @method static AppearanceType WELCOME_TEXT()
  * @method static AppearanceType CUSTOM_ORDER()
  * @method static AppearanceType CHECKOUT()
+ * @method static AppearanceType COMPANIES()
  */
 class AppearanceType extends Enum
 {
@@ -27,6 +28,7 @@ class AppearanceType extends Enum
     private const WELCOME_TEXT       = 'welcome_text';
     private const CUSTOM_ORDER       = 'custom_order';
     private const CHECKOUT           = 'checkout';
+    private const COMPANIES          = 'companies';
 
 
 }

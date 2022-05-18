@@ -31,6 +31,7 @@ class ColorChangeRequestMail extends Mailable
     public function build()
     {
         return $this->markdown('mails.color-change-request')
+            ->subject('Color change request received')
             ->with('colorChange', $this->colorChange);
     }
 }

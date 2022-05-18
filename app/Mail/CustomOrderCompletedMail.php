@@ -30,6 +30,6 @@ class CustomOrderCompletedMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.custom-order-completed')->with('order', $this->order);
+        return $this->markdown('mails.custom-order-completed')->subject('Custom design completed')->with('order', $this->order);
     }
 }

@@ -43,8 +43,8 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
-{{ \App\Facades\Helper::getAppName()}}
+@lang('Kind regards'),<br>
+{{ \App\Facades\Helper::getAppName()}} team
 @endif
 
 {{-- Subcopy --}}

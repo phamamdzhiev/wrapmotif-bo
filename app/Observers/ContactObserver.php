@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\ContactJob;
 use App\Jobs\NotifyUserJob;
 use App\Models\Contact;
 use App\Jobs\ReplyMessageJob;
@@ -16,6 +17,7 @@ class ContactObserver
      */
     public function created(Contact $contact)
     {
+        ContactJob::dispatch($contact);
         NotifyUserJob::dispatch($contact);
     }
 

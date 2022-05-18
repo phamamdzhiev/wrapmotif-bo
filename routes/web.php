@@ -74,6 +74,7 @@ use App\Http\Controllers\DesignCharacterController;
 //     return Inertia::render('Dashboard');
 // })->name('dashboard');
 
+Route::get('email', [HomePageController::class, 'emailTest'])->name('email-test');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
@@ -114,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/appearance/others/terms-and-conditions', [OtherPageController::class, 'termsCondition'])->name('appearance.others.terms');
     Route::post('/appearance/others/how-It-Works', [OtherPageController::class, 'howItWork'])->name('appearance.others.howItWorks');
     Route::post('/appearance/others/checkout', [OtherPageController::class, 'checkout'])->name('appearance.others.checkout');
+    Route::post('/appearance/others/companies', [OtherPageController::class, 'companies'])->name('appearance.others.companies');
 
     // Setting route
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');

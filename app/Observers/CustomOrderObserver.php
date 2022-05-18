@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
+use App\Jobs\CustomOrderJob;
 use App\Jobs\NotifyUserJob;
 use App\Models\CustomOrder;
 use App\Jobs\CustomOrderCompletedJob;
-use App\Notifications\CustomOrderCompleted;
 
 class CustomOrderObserver
 {
@@ -18,7 +18,7 @@ class CustomOrderObserver
     public function created(CustomOrder $customOrder)
     {
         // Send notification to customer
-        CustomOrderCompletedJob::dispatch($customOrder);
+        CustomOrderJob::dispatch($customOrder);
         // Send notification to admin user
         NotifyUserJob::dispatch($customOrder);
     }
@@ -31,7 +31,10 @@ class CustomOrderObserver
      */
     public function updated(CustomOrder $customOrder)
     {
-        //
+        // Send notification to customer
+        if ($customOrder->isDirty('feedback')) {
+            CustomOrderCompletedJob::dispatch($customOrder);
+        }
     }
 
     /**

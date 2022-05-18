@@ -27,6 +27,7 @@ class OtherPageController extends Controller
             'terms'      => Appearance::where('name', AppearanceType::TERMS_CONDITIONS())->first() ?? null,
             'howItWorks' => Appearance::where('name', AppearanceType::HOW_IT_WORKS_PAGE())->first() ?? null,
             'checkout' => Appearance::where('name', AppearanceType::CHECKOUT())->first() ?? null,
+            'companies' => Appearance::where('name', AppearanceType::COMPANIES())->first() ?? null,
         ]);
     }
     /**
@@ -140,6 +141,36 @@ class OtherPageController extends Controller
         });
 
         session()->flash('flash.banner', 'Checkout notes updated successfullly.');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('appearance.others');
+    }
+
+    /**
+     * Save title and description for companies pages
+     */
+    public function companies(Request $request)
+    {
+        $request->validate([
+            'title'  =>  'required|string|max:200',
+            'description'  =>  'required|string',
+        ]);
+
+        DB::transaction(function () use ($request) {
+            Appearance::updateOrCreate(
+                [
+                    'name' => AppearanceType::COMPANIES()
+                ],
+                [
+                    'data' => [
+                        'title'    => $request->title,
+                        'description'    => $request->description,
+                    ]
+                ]
+            );
+        });
+
+        session()->flash('flash.banner', 'Companies data updated successfully.');
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('appearance.others');

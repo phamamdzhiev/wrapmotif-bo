@@ -39,13 +39,17 @@ class DownloadMediaController extends Controller
     {
         if (auth()->user()->id == $order->customerId) {
             $productIds = $order->orderItems()->pluck('product_id')->toArray();
+
             // Let's get some media.
-            $downloads = Media::whereIn('model_id', $productIds)->where('model_type', Product::class)->get();
+            $downloads = Media::whereIn('model_id', $productIds)->where('model_type', Product::class)
+                ->where('mime_type', 'application/zip')
+                ->first();
 
             // Download the files associated with the media in a streamed way.
             // No prob if your files are very large.
             if ($downloads) {
-                return MediaStream::create("order-{$order->id}.zip")->addMedia($downloads);
+//                return MediaStream::create("order-{$order->id}.zip")->addMedia($downloads);
+                return $downloads;
             } else {
                 Response::error('No media found');
             }

@@ -3,14 +3,18 @@
 namespace App\Providers;
 
 use App\Models\ColorChange;
+use App\Models\Company;
 use App\Models\Contact;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\CustomOrder;
 use App\Models\PreviewDesign;
 use App\Models\Product;
 use App\Observers\ColorChangeObserver;
+use App\Observers\CompanyObserver;
 use App\Observers\ContactObserver;
+use App\Observers\CustomerObserver;
 use App\Observers\OrderObserver;
 use App\Observers\OrderItemObserver;
 use App\Observers\CustomOrderObserver;
@@ -44,5 +48,7 @@ class ObserverServiceProvider extends ServiceProvider
         ColorChange::observe(ColorChangeObserver::class);
         PreviewDesign::observe(PreviewDesignObserver::class);
         Contact::observe(ContactObserver::class);
+        Customer::observe(CustomerObserver::class);
+        Company::observe(CompanyObserver::class);
     }
 }

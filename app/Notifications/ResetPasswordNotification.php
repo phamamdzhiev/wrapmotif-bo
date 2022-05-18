@@ -43,11 +43,12 @@ class ResetPasswordNotification extends ResetPassword
     {
         $link = env('FRONTEND_URL', 'http://localhost:4000') . "/reset-password/" . $this->token;
         return (new MailMessage)
-            ->subject('Reset Password Notification')
-            ->line("Hello! You are receiving this email because we received a password reset request for your account.")
+            ->subject('Reset your password')
+            ->line("Hello! " . $notifiable->name)
+            ->line("We got a request to change the password for your account.")
             ->action('Reset Password', $link)
             ->line("This password reset link will expire in " . config('auth.passwords.users.expire') . " minutes")
-            ->line("If you did not request a password reset, no further action is required.");
+            ->line("If you did not request this change, no further action is required.");
     }
 
     /**

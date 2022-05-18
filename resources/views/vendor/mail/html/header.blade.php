@@ -1,8 +1,8 @@
 <tr>
     <td class="header">
         <a href="{{ $url }}" style="display: inline-block;">
-            @if (\App\Facades\Helper::getDarkLogo())
-                <img src="{{ \App\Facades\Helper::getDarkLogo() }}" class="logo" alt="Logo" style="width: auto">
+            @if (\App\Facades\Helper::getLightLogo())
+                <img src="{{ \App\Facades\Helper::getLightLogo() }}" class="logo" alt="Logo" style="width: auto">
             @else
                 <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Logo">
             @endif

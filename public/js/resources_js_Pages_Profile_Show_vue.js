@@ -1130,8 +1130,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_logout_other_browser_sessions_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("logout-other-browser-sessions-form");
 
-  var _component_delete_user_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("delete-user-form");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [_ctx.$page.props.jetstream.canUpdateProfileInformation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_update_profile_information_form, {
     user: _ctx.$page.props.user
   }, null, 8
@@ -1145,13 +1143,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-10 sm:mt-0"
   }, null, 8
   /* PROPS */
-  , ["sessions"]), _ctx.$page.props.jetstream.hasAccountDeletionFeatures ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 3
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_user_form, {
-    "class": "mt-10 sm:mt-0"
-  })], 64
-  /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  , ["sessions"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <template v-if=\"$page.props.jetstream.hasAccountDeletionFeatures\">\n            <jet-section-border />\n\n            <delete-user-form class=\"mt-10 sm:mt-0\" />\n        </template>")]);
 }
 
 /***/ }),

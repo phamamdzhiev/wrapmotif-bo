@@ -8,6 +8,8 @@
     <how-it-work-section></how-it-work-section>
     <jet-section-border></jet-section-border>
     <checkout-section></checkout-section>
+    <jet-section-border></jet-section-border>
+    <companies></companies>
 
 
     </div>
@@ -18,6 +20,7 @@ import  FaqSection from "./Faq.vue";
 import  TermsConditionsSection from "./TermsConditions.vue";
 import  HowItWorkSection from "./HowItWork.vue";
 import CheckoutSection from "./Checkout";
+import Companies from "./Companies";
 
 
 export default {
@@ -26,6 +29,7 @@ export default {
         FaqSection,
         TermsConditionsSection,
         HowItWorkSection,
+        Companies
     },
 };
 </script>

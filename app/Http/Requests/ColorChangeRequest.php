@@ -31,13 +31,13 @@ class ColorChangeRequest extends FormRequest
             'color.*.code'        => ['required', 'string'],
             'color.*.description' => ['nullable', 'string', 'max:250'],
             'description'         => ['nullable', 'string', 'max:500'],
-            'depositAmount'       => ['required', 'integer', 'min:0'],
-            'customerAmount'      => ['required', 'integer', 'min:0'],
+            'depositAmount'       => ['required', 'numeric', 'min:0'],
+            'customerAmount'      => ['required', 'numeric', 'min:0'],
             'customerCurrency'    => ['required', 'string'],
-            'vat'                 => 'required|integer|min:0',
+            'vat'                 => 'required|numeric|min:0',
             'vatType'             => ['required', Rule::in(VatType::toArray())],
-            'vatAmount'           => 'required|integer|min:0',
-            'customerVatAmount'   => 'required|integer|min:0',
+            'vatAmount'           => 'required|numeric|min:0',
+            'customerVatAmount'   => 'required|numeric|min:0',
         ];
     }
 }

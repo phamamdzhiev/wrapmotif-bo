@@ -30,6 +30,8 @@ class PreviewDesignFeedbackMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.preview-design-feedback')->with('design', $this->design);
+        return $this->markdown('mails.preview-design-feedback')
+            ->subject('Preview design completed')
+            ->with('design', $this->design);
     }
 }

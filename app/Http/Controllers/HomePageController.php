@@ -2,6 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CompanyApprovedJob;
+use App\Jobs\CompanyRequestJob;
+use App\Jobs\CustomOrderCompletedJob;
+use App\Jobs\CustomOrderJob;
+use App\Jobs\OrderCompletedJob;
+use App\Mail\CompanyRequestMail;
+use App\Mail\CustomerMail;
+use App\Models\Company;
+use App\Models\Customer;
+use App\Models\CustomOrder;
+use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use App\Models\Feature;
 use App\Models\Appearance;
@@ -62,6 +74,15 @@ class HomePageController extends Controller
 
             if ($request->file('poster')) {
                 $hero->addMedia($request->poster)->toMediaCollection('secondary');
+            }
+
+            if ($request->file('video_mobile')) {
+                $hero->addMedia($request->video_mobile)->toMediaCollection('video_mobile');
+            }
+
+
+            if ($request->file('poster_mobile')) {
+                $hero->addMedia($request->poster_mobile)->toMediaCollection('poster_mobile');
             }
         });
 
@@ -254,5 +275,11 @@ class HomePageController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('appearance.home');
+    }
+
+    public function emailTest(){
+        $order = CustomOrder::query()->where('customer_id', 18)->firstOrFail();
+        CustomOrderCompletedJob::dispatch($order);
+
     }
 }

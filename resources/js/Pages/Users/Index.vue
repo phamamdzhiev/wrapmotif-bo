@@ -29,7 +29,7 @@
 								<i class="ti-pencil-alt"></i>
 							</inertia-link>
 
-							<jet-danger-button @click="destroy(row.id)" v-if="row.id == $page.props.user.id">
+							<jet-danger-button @click="destroy(row.id)" >
 								<i class="ti-trash"></i>
 							</jet-danger-button>
 						</td>

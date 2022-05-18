@@ -21,7 +21,9 @@ __webpack_require__.r(__webpack_exports__);
         subtitle: (_this$$page$props$her3 = this.$page.props.hero) === null || _this$$page$props$her3 === void 0 ? void 0 : (_this$$page$props$her4 = _this$$page$props$her3.data) === null || _this$$page$props$her4 === void 0 ? void 0 : _this$$page$props$her4.subtitle,
         button: (_this$$page$props$her5 = this.$page.props.hero) === null || _this$$page$props$her5 === void 0 ? void 0 : (_this$$page$props$her6 = _this$$page$props$her5.data) === null || _this$$page$props$her6 === void 0 ? void 0 : _this$$page$props$her6.button,
         video: null,
-        poster: null
+        poster: null,
+        video_mobile: null,
+        poster_mobile: null
       })
     };
   },
@@ -31,6 +33,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     handlePosterChange: function handlePosterChange(file) {
       this.form.poster = file;
+    },
+    handleVideoMobileChange: function handleVideoMobileChange(file) {
+      this.form.video_mobile = file;
+    },
+    handlePosterMobileChange: function handlePosterMobileChange(file) {
+      this.form.poster_mobile = file;
     },
     handleVideoChange: function handleVideoChange(file) {
       this.form.video = file;
@@ -93,9 +101,29 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Saved.");
+var _hoisted_10 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("small", {
+  "class": "block mt-2 font-thin text-gray-400"
+}, "* Supported format: mp4,mov,ogg,avi. Max allocation: 30MB.", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  "class": "col-span-6 sm:col-span-4"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("small", {
+  "class": "mt-2 font-thin text-gray-400"
+}, "* Image should be minimum 800x1200 px. Maximum file size: 10MB/10240KB.", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Saved.");
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -126,7 +154,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
       return [_hoisted_2];
     }),
     form: _withId(function () {
-      var _ctx$$page$props$hero, _ctx$$page$props$hero2;
+      var _ctx$$page$props$hero, _ctx$$page$props$hero2, _ctx$$page$props$hero3, _ctx$$page$props$hero4, _ctx$$page$props$hero5, _ctx$$page$props$hero6;
 
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "for": "title",
@@ -214,6 +242,36 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("      Mobile video/photo      "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+        "for": "video_mobile",
+        value: "Video Mobile"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"file\" @input=\"form.video = $event.target.files[0]\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_file_input, {
+        url: (_ctx$$page$props$hero3 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero3 === void 0 ? void 0 : (_ctx$$page$props$hero4 = _ctx$$page$props$hero3.media.find(function (element) {
+          return element.collection_name === 'video_mobile';
+        })) === null || _ctx$$page$props$hero4 === void 0 ? void 0 : _ctx$$page$props$hero4.original_url,
+        onChange: $options.handleVideoMobileChange
+      }, null, 8
+      /* PROPS */
+      , ["url", "onChange"]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+        message: $data.form.errors.video_mobile,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+        "for": "poster_mobile",
+        value: "Poster Mobile"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_image_input, {
+        url: (_ctx$$page$props$hero5 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero5 === void 0 ? void 0 : (_ctx$$page$props$hero6 = _ctx$$page$props$hero5.media.find(function (element) {
+          return element.collection_name === 'poster_mobile';
+        })) === null || _ctx$$page$props$hero6 === void 0 ? void 0 : _ctx$$page$props$hero6.original_url,
+        onChange: $options.handlePosterMobileChange
+      }, null, 8
+      /* PROPS */
+      , ["url", "onChange"]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"file\" @input=\"form.poster = $event.target.files[0]\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+        message: $data.form.errors.poster_mobile,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
       , ["message"])])];
     }),
     actions: _withId(function () {
@@ -222,7 +280,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "mr-3"
       }, {
         "default": _withId(function () {
-          return [_hoisted_10];
+          return [_hoisted_14];
         }),
         _: 1
         /* STABLE */
@@ -236,7 +294,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         disabled: $data.form.processing
       }, {
         "default": _withId(function () {
-          return [_hoisted_11];
+          return [_hoisted_15];
         }),
         _: 1
         /* STABLE */

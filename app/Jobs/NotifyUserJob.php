@@ -3,12 +3,14 @@
 namespace App\Jobs;
 
 use App\Models\ColorChange;
+use App\Models\Company;
 use App\Models\Contact;
 use App\Models\CustomOrder;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\PreviewDesign;
 use App\Notifications\NewColorChangeRequested;
+use App\Notifications\NewCompanyNotification;
 use App\Notifications\NewCustomOrderPlaced;
 use App\Notifications\NewMessage;
 use Illuminate\Bus\Queueable;
@@ -67,6 +69,10 @@ class NotifyUserJob implements ShouldQueue
 
         if ($this->model instanceof Contact) {
             Notification::send($users, new NewMessage($this->model));
+        }
+
+        if($this->model instanceof Company){
+            Notification::send($users, new NewCompanyNotification($this->model));
         }
     }
 }

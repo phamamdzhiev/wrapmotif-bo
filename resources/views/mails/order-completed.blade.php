@@ -1,30 +1,12 @@
 @component('mail::message')
-{{-- ### Hello {{ $order->customer->name }}, --}}
-## Hello, you have just successfully completed your Stock design purchase order {{$order->id}} at {{\App\Facades\Helper::getAppName()}} with invoice <a href="{{config('app.frontend_url')."/profile/orders"}}">{{$order->invoiceNo}}</a>
+### Hello {{ $order->customer->name }},
 
-Thank you for using our services.
-You can download your designs here: 
+Thank you for your purchase! We are so grateful for the pleasure of serving you and hope we met your expectations. You can download the ready-to-print file and the order receipt in your profile under the tab <a href="{{config('app.frontend_url')."/profile/orders"}}">purchase orders.</a>
 
-@component('mail::button', ['url' => config('app.frontend_url')."/download/{$order->id}"])
-Download
-@endcomponent
-
-We recommend you do so as soon as possible, but you have a period of 30 days to download. We cannot guarantee that the link will remain active beyond that due to removing the design from the offer.
-Do you want to get a wrap now? Request one at one of our <a href="{{config('app.frontend_url')."/wrapping-companies"}}">Wrapping companies</a>.
-You can find all of your purchased designs in <a href="{{config('app.frontend_url')."/profile/designs"}}">My designs</a>.
-
-{{-- Your order successfully placed.
-
-Total Amount {{$order->customerGrandTotalFormatted}} --}}
-{{-- 
-Thanks,<br>
-{{ \App\Facades\Helper::getAppName()}} --}}
 
 @component('mail::subcopy')
-<p style="font-weight: bold; color: #636262">
-In case you have any questions, please utilize our web support or contact us at <a href="">{{\App\Facades\Helper::getAppEmail()}}</a>.
-You're getting this email because you registered an account on wrapstock.com using this email address.
-</p>
+ If you have any questions, do not hesitate to ask us.
 @endcomponent
-
+@lang('Kind regards'),<br>
+{{ \App\Facades\Helper::getAppName()}} team
 @endcomponent

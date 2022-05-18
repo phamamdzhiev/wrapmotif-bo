@@ -30,7 +30,7 @@ class ColorChangeFeedbackMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("Color change request #{$this->colorChange->id} feedback")
+        return $this->subject("Color change completed")
             ->markdown('mails.color-change-feedback')
             ->with('colorChange', $this->colorChange);
     }
