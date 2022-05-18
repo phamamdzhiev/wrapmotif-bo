@@ -198,7 +198,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.video = file;
     }
   },
-  mounted: function mounted() {// console.log();;
+  mounted: function mounted() {
+    console.log(this.$page.props.hero);
   }
 });
 

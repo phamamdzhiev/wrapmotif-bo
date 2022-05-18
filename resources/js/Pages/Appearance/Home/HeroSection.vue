@@ -96,7 +96,7 @@ export default {
 		},
 	},
 	mounted() {
-		// console.log();;
+		console.log(this.$page.props.hero);
 	},
 };
 </script>
