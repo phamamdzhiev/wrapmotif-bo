@@ -2,18 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CompanyApprovedJob;
-use App\Jobs\CompanyRequestJob;
-use App\Jobs\CustomOrderCompletedJob;
-use App\Jobs\CustomOrderJob;
-use App\Jobs\OrderCompletedJob;
-use App\Mail\CompanyRequestMail;
-use App\Mail\CustomerMail;
-use App\Models\Company;
-use App\Models\Customer;
-use App\Models\CustomOrder;
-use App\Models\Order;
-use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use App\Models\Feature;
 use App\Models\Appearance;
@@ -277,9 +265,4 @@ class HomePageController extends Controller
         return redirect()->route('appearance.home');
     }
 
-    public function emailTest(){
-        $order = CustomOrder::query()->where('customer_id', 18)->firstOrFail();
-        CustomOrderCompletedJob::dispatch($order);
-
-    }
 }

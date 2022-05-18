@@ -74,7 +74,6 @@ use App\Http\Controllers\DesignCharacterController;
 //     return Inertia::render('Dashboard');
 // })->name('dashboard');
 
-Route::get('email', [HomePageController::class, 'emailTest'])->name('email-test');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
