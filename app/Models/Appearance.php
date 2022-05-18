@@ -23,7 +23,9 @@ class Appearance extends Model implements HasMedia
      *
      * @var array
      */
-    protected $appends = ['primaryMedia', 'secondaryMedia', 'mediaCollection', 'primaryMediaUrl', 'secondaryMediaUrl'];
+    protected $appends = ['primaryMedia', 'secondaryMedia',
+        'mediaCollection', 'primaryMediaUrl', 'secondaryMediaUrl',
+        'videoMobile', 'posterMobile', 'videoMobileMediaUrl', 'posterMobileMediaUrl'];
 
     /**
      * Register the media collections
@@ -69,6 +71,20 @@ class Appearance extends Model implements HasMedia
     }
 
     /**
+     * Gte the video mobile media
+     */
+    public function getVideoMobileAttribute(){
+        return $this->getFirstMedia('video_mobile') ?? null;
+    }
+
+    /**
+     * Gte the video mobile media
+     */
+    public function getPosterMobileAttribute(){
+        return $this->getFirstMedia('poster_mobile') ?? null;
+    }
+
+    /**
      * Get the primary media
      */
     public function getPrimaryMediaUrlAttribute()
@@ -82,6 +98,22 @@ class Appearance extends Model implements HasMedia
     public function getSecondaryMediaUrlAttribute()
     {
         return $this->getFirstMediaUrl('secondary') ?? null;
+    }
+
+    /**
+     * Get the video mobile media
+     */
+    public function getVideoMobileMediaUrlAttribute()
+    {
+        return $this->getFirstMediaUrl('video_mobile') ?? null;
+    }
+
+    /**
+     * Get the poster mobile media
+     */
+    public function getPosterMobileMediaUrlAttribute()
+    {
+        return $this->getFirstMediaUrl('poster_mobile') ?? null;
     }
 
     /**

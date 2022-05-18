@@ -198,8 +198,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.video = file;
     }
   },
-  mounted: function mounted() {
-    console.log(this.$page.props.hero);
+  mounted: function mounted() {// console.log(this.$page.props.hero);
   }
 });
 
@@ -1192,7 +1191,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
       return [_hoisted_2];
     }),
     form: _withId(function () {
-      var _ctx$$page$props$hero, _ctx$$page$props$hero2, _ctx$$page$props$hero3, _ctx$$page$props$hero4, _ctx$$page$props$hero5, _ctx$$page$props$hero6;
+      var _ctx$$page$props$hero, _ctx$$page$props$hero2, _ctx$$page$props$hero3, _ctx$$page$props$hero4;
 
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "for": "title",
@@ -1284,9 +1283,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "for": "video_mobile",
         value: "Video Mobile"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"file\" @input=\"form.video = $event.target.files[0]\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_file_input, {
-        url: (_ctx$$page$props$hero3 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero3 === void 0 ? void 0 : (_ctx$$page$props$hero4 = _ctx$$page$props$hero3.media.find(function (element) {
-          return element.collection_name === 'video_mobile';
-        })) === null || _ctx$$page$props$hero4 === void 0 ? void 0 : _ctx$$page$props$hero4.original_url,
+        url: (_ctx$$page$props$hero3 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero3 === void 0 ? void 0 : _ctx$$page$props$hero3.videoMobileMediaUrl,
         onChange: $options.handleVideoMobileChange
       }, null, 8
       /* PROPS */
@@ -1299,9 +1296,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "for": "poster_mobile",
         value: "Poster Mobile"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_image_input, {
-        url: (_ctx$$page$props$hero5 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero5 === void 0 ? void 0 : (_ctx$$page$props$hero6 = _ctx$$page$props$hero5.media.find(function (element) {
-          return element.collection_name === 'poster_mobile';
-        })) === null || _ctx$$page$props$hero6 === void 0 ? void 0 : _ctx$$page$props$hero6.original_url,
+        url: (_ctx$$page$props$hero4 = _ctx.$page.props.hero) === null || _ctx$$page$props$hero4 === void 0 ? void 0 : _ctx$$page$props$hero4.posterMobileMediaUrl,
         onChange: $options.handlePosterMobileChange
       }, null, 8
       /* PROPS */
