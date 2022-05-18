@@ -41,6 +41,14 @@ class Appearance extends Model implements HasMedia
             ->singleFile();
 
         $this
+            ->addMediaCollection('video_mobile')
+            ->singleFile();
+
+        $this
+            ->addMediaCollection('poster_mobile')
+            ->singleFile();
+
+        $this
             ->addMediaCollection('collection');
     }
 
