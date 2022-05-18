@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Jobs\NewsletterJob;
 use Newsletter;
 use App\Facades\Response;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class NewsletterController extends Controller
 {
     /**
      * Subscribe for newsletter
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return void
      */
@@ -23,6 +24,7 @@ class NewsletterController extends Controller
 
         if (!Newsletter::isSubscribed($request->subscriptionEmail)) {
             Newsletter::subscribe($request->subscriptionEmail);
+            NewsletterJob::dispatch($request->subscriptionEmail);
             return Response::success('Subscribed successfully');
         } else {
             return Response::error('Already subscribed', [], 403);
