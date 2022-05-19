@@ -49,7 +49,16 @@ class DownloadMediaController extends Controller
             // No prob if your files are very large.
             if ($downloads) {
 //                return MediaStream::create("order-{$order->id}.zip")->addMedia($downloads);
-                return $downloads;
+                $headers = [
+                    'Content-Type'        => $downloads->mime_type,
+                    "Access-Control-Expose-Headers" => "Content-Disposition",
+                    'Content-Disposition' => 'attachment; filename="'. $downloads->file_name .'"',
+                ];
+//                return $downloads;
+
+
+
+                return response()->make(\Storage::disk('s3')->get($downloads->getPath()), 200, $headers);
             } else {
                 Response::error('No media found');
             }
