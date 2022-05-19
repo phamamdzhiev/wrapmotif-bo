@@ -29,7 +29,7 @@
 								<i class="ti-pencil-alt"></i>
 							</inertia-link>
 
-							<jet-danger-button @click="destroy(row.id)" >
+							<jet-danger-button @click="destroy(row.id)" v-if="row.email !=='solaimanelakraa@gmail.com'">
 								<i class="ti-trash"></i>
 							</jet-danger-button>
 						</td>
