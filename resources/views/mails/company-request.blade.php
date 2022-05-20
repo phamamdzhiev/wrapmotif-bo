@@ -1,5 +1,5 @@
 @component('mail::message')
-### Hello {{ $company->company_name }},
+### Hello {{ $company->customer->surname }},
 
 Congratulations, you are approved for our partnership.
 Your company will be presented on our map. Our clients from your area can find your company and will be able to contact you for your services.
