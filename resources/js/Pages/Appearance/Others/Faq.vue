@@ -62,10 +62,12 @@
 					<jet-input type="text" class="mt-1 block w-full" ref="title" v-model="form.question" />
 					<jet-input-error :message="form.errors.question" class="mt-2" />
 				</div>
-				<!-- Answer Azis -->
+				<!-- Answerrr -->
 				<div class="col-span-6 sm:col-span-4 mt-4">
-					<jet-label for="description" value="Answer" />
-                    <QuillEditor id="description" class="mt-1 block w-full" v-model:content="form.answer" contentType="html" theme="snow" />
+					<jet-label value="Answer" />
+                    <div>
+                        <QuillEditor v-model:content="form.answer" contentType="html" theme="snow" />
+                    </div>
 					<jet-input-error :message="form.errors.answer" class="mt-2" />
 				</div>
 
@@ -149,7 +151,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#description{
-    height: 12rem!important;
-}
+
 </style>
