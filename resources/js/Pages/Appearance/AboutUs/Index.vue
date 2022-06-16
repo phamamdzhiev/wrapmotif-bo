@@ -69,7 +69,7 @@ export default {
                 title: this.$page.props.about_us?.data?.title,
                 title_sign: this.$page.props.about_us?.data?.title_sign,
                 image: null,
-                image_sign: null,about_us
+                image_sign: null,about_us,
                 content: this.$page.props.about_us?.data?.content,
                 content_sign: this.$page.props.about_us?.data?.content_sign,
             }),
