@@ -12,63 +12,48 @@ use App\Http\Controllers\Controller;
 class AboutUsPageController extends Controller
 {
     /**
-     * Get the Partner page settings view
+     * Get the about page settings view
      */
     public function index()
     {
-//        Appearance::updateOrCreate(
-//            [
-//                'name' => AppearanceType::ABOUT_US_PAGE()
-//            ],
-//            [
-//                'data' => [
-//                    'title'    => 'About us - azis page',
-//                ]
-//            ]
-//        );
-
         return Inertia::render('Appearance/AboutUs/Index', [
             'aboutUs' => Appearance::where('name', AppearanceType::ABOUT_US_PAGE())->first() ?? null,
         ]);
     }
 
     /**
-     * Save partner page content
+     * Save about page content
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $request->validate([
-            'title'    => 'required|string|max:100',
-            'content'  => 'required|string',
-            'image'    => 'nullable|image|mimes:png,jpg,jpeg|max:10240',
-            'title_sign'    => 'required|string|max:100',
-            'content_sign'  => 'required|string',
-            'image_sign'    => 'nullable|image|mimes:png,jpg,jpeg|max:10240'
+            'title' => 'required|string|max:100',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:10240',
+            'image_sign' => 'nullable|image|mimes:png,jpg,jpeg|max:10240'
         ]);
 
         DB::transaction(function () use ($request) {
-            $partner = Appearance::updateOrCreate(
+            $about = Appearance::updateOrCreate(
                 [
                     'name' => AppearanceType::ABOUT_US_PAGE()
                 ],
                 [
                     'data' => [
-                        'title'    => $request->title,
-                        'content'  => $request->get('content'),
-                        'title_sign'    => $request->title_sign,
-                        'content_sign'  => $request->content_sign,
+                        'title' => $request->title,
+                        'content' => $request->get('content'),
+                        'image' => $request->image,
+                        'image_sign' => $request->image_sign,
                     ]
                 ]
             );
 
             if ($request->file('image')) {
-                $partner->addMedia($request->image)->toMediaCollection('primary');
+                $about->addMedia($request->image)->toMediaCollection('primary');
             }
 
             if ($request->file('image_sign')) {
-                $partner->addMedia($request->image_sign)->toMediaCollection('secondary');
+                $about->addMedia($request->image_sign)->toMediaCollection('secondary');
             }
 
         });
@@ -76,6 +61,6 @@ class AboutUsPageController extends Controller
         session()->flash('flash.banner', 'Updated successfullly.');
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('appearance.partner');
+        return redirect()->route('appearance.about');
     }
 }
