@@ -63,9 +63,9 @@
 					<jet-input-error :message="form.errors.question" class="mt-2" />
 				</div>
 				<!-- Answerrr -->
-				<div class="col-span-6 sm:col-span-4 mt-4">
+				<div class="col-span-6 sm:col-span-4 mt-4" style="height: 200px!important;">
 					<jet-label value="Answer" />
-                    <div>
+                    <div style="height: 60%!important;">
                         <QuillEditor v-model:content="form.answer" contentType="html" theme="snow" />
                     </div>
 					<jet-input-error :message="form.errors.answer" class="mt-2" />
