@@ -16,16 +16,16 @@ class AboutUsPageController extends Controller
      */
     public function index()
     {
-        Appearance::updateOrCreate(
-            [
-                'name' => AppearanceType::ABOUT_US_PAGE()
-            ],
-            [
-                'data' => [
-                    'title'    => 'About us - azis page',
-                ]
-            ]
-        );
+//        Appearance::updateOrCreate(
+//            [
+//                'name' => AppearanceType::ABOUT_US_PAGE()
+//            ],
+//            [
+//                'data' => [
+//                    'title'    => 'About us - azis page',
+//                ]
+//            ]
+//        );
 
         return Inertia::render('Appearance/AboutUs/Index', [
             'partner' => Appearance::where('name', AppearanceType::ABOUT_US_PAGE())->first() ?? null,
