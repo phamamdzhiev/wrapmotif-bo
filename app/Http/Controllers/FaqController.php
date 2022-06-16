@@ -22,7 +22,6 @@ class FaqController extends Controller
         $request->validate([
             'type'       => 'required|string|max:100',
             'question'    => 'required|string|max:100',
-            'answerLink'        => 'string|max:100',
             'answer'        => 'required|string|max:500',
         ]);
 
@@ -31,8 +30,8 @@ class FaqController extends Controller
                 [
                     'type'       => $request->type,
                     'question'    => $request->question,
-                    'link'    => $request->answerLink,
                     'answer'    => $request->answer,
+
                 ]
             );
 
@@ -58,7 +57,6 @@ class FaqController extends Controller
         $request->validate([
             'type'       => 'required|string|max:100',
             'question'    => 'required|string|max:100',
-            'answerLink'        => 'string|max:100',
             'answer'        => 'required|string|max:500',
         ]);
 
@@ -67,7 +65,6 @@ class FaqController extends Controller
                 [
                     'type'       => $request->type,
                     'question'    => $request->question,
-                    'link'    => $request->answerLink,
                     'answer'    => $request->answer,
                 ]
             );

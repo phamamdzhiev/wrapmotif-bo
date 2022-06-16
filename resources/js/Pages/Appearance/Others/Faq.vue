@@ -60,15 +60,11 @@
 					<jet-input type="text" class="mt-1 block w-full" ref="title" v-model="form.question" />
 					<jet-input-error :message="form.errors.question" class="mt-2" />
 				</div>
-                <!-- Answer Link -->
-                <div class="mt-4">
-                    <jet-label for="title" value="Answer Link (optional)" />
-                    <jet-input type="text" class="mt-1 block w-full" ref="title" v-model="form.answerLink" />
-                </div>
 				<!-- Answer -->
 				<div class="col-span-6 sm:col-span-4 mt-4">
 					<jet-label for="description" value="Answer" />
-					<jet-text-input id="description" type="text" class="mt-1 block w-full" v-model="form.answer" ref="description" autocomplete="description" />
+                    <QuillEditor v-model:content="form.answer" contentType="html" theme="snow" />
+<!--					<jet-text-input id="description" type="text" class="mt-1 block w-full" v-model="form.answer" ref="description" autocomplete="description" />-->
 					<jet-input-error :message="form.errors.answer" class="mt-2" />
 				</div>
 
@@ -83,7 +79,12 @@
 </template>
 
 <script>
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 export default {
+    components: {
+        QuillEditor,
+    },
 	data() {
 		return {
 			form: this.$inertia.form({
