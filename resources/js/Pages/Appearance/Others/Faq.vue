@@ -60,6 +60,11 @@
 					<jet-input type="text" class="mt-1 block w-full" ref="title" v-model="form.question" />
 					<jet-input-error :message="form.errors.question" class="mt-2" />
 				</div>
+                <!-- Answer Link -->
+                <div class="mt-4">
+                    <jet-label for="title" value="Answer Link (optional)" />
+                    <jet-input type="text" class="mt-1 block w-full" ref="title" v-model="form.answerLink" />
+                </div>
 				<!-- Answer -->
 				<div class="col-span-6 sm:col-span-4 mt-4">
 					<jet-label for="description" value="Answer" />
@@ -85,6 +90,7 @@ export default {
 				id: null,
 				type: null,
 				question: null,
+				answerLink: null,
 				answer: null,
 			}),
 
@@ -131,6 +137,7 @@ export default {
 			this.form.id = this.$page.props.faqs[index].id;
 			this.form.type = this.$page.props.faqs[index].type;
 			this.form.question = this.$page.props.faqs[index].question;
+			this.form.answerLink = this.$page.props.faqs[index].answerLink;
 			this.form.answer = this.$page.props.faqs[index].answer;
 		},
 
