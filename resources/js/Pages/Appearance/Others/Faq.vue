@@ -23,7 +23,9 @@
 						<tr v-for="(faq, index) in $page.props.faqs" :key="index">
 							<td class="px-6 py-4 whitespace-nowrap capitalize">{{ beautify(faq.type)}}</td>
 							<td class="px-6 py-4 whitespace-nowrap truncate" style="max-width:50px">{{ faq.question}}</td>
-							<td class="px-6 py-4 whitespace-nowrap truncate" style="max-width: 150px">{{ faq.answer}}</td>
+							<td class="px-6 py-4 whitespace-nowrap truncate" style="max-width: 150px">
+                                <span v-html="faq.answer"></span>
+                            </td>
 
 							<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 								<jet-button type="button" class="mr-2" @click="editFaq(index)">
