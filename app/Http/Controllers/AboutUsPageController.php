@@ -37,7 +37,7 @@ class AboutUsPageController extends Controller
      */
     public function store(Request $request)
     {
-        dd(222);
+        dd($request->all());
 
         $request->validate([
             'title'    => 'required|string|max:100',
