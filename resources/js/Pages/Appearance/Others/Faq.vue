@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ql-container {
+#description{
     height: 12rem!important;
 }
 </style>
