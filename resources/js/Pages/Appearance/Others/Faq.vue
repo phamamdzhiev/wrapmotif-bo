@@ -65,7 +65,7 @@
 				<!-- Answer Azis -->
 				<div class="col-span-6 sm:col-span-4 mt-4">
 					<jet-label for="description" value="Answer" />
-                    <QuillEditor id="description" class="mt-1 block w-full h-48" v-model:content="form.answer" contentType="html" theme="snow" />
+                    <QuillEditor id="description" class="mt-1 block w-full" v-model:content="form.answer" contentType="html" theme="snow" />
 					<jet-input-error :message="form.errors.answer" class="mt-2" />
 				</div>
 
@@ -149,4 +149,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ql-container {
+    height: 12rem!important;
+}
 </style>
