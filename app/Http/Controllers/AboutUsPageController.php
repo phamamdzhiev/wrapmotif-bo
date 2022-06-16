@@ -28,7 +28,7 @@ class AboutUsPageController extends Controller
 //        );
 
         return Inertia::render('Appearance/AboutUs/Index', [
-            'partner' => Appearance::where('name', AppearanceType::ABOUT_US_PAGE())->first() ?? null,
+            'aboutUs' => Appearance::where('name', AppearanceType::ABOUT_US_PAGE())->first() ?? null,
         ]);
     }
 
