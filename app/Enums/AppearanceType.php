@@ -10,6 +10,7 @@ namespace App\Enums;
  * @method static AppearanceType HOW_IT_WORKS()
  * @method static AppearanceType HOW_IT_WORKS_PAGE()
  * @method static AppearanceType PARTNER_PAGE()
+ * @method static AppearanceType ABOUT_US_PAGE()
  * @method static AppearanceType WELCOME_TEXT()
  * @method static AppearanceType CUSTOM_ORDER()
  * @method static AppearanceType CHECKOUT()
@@ -25,6 +26,7 @@ class AppearanceType extends Enum
     private const TERMS_CONDITIONS   = 'terms_conditions';
     private const HOW_IT_WORKS_PAGE  = 'how_it_works_page';
     private const PARTNER_PAGE       = 'partner_page';
+    private const ABOUT_US_PAGE      = 'about_us_page';
     private const WELCOME_TEXT       = 'welcome_text';
     private const CUSTOM_ORDER       = 'custom_order';
     private const CHECKOUT           = 'checkout';

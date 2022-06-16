@@ -145,6 +145,13 @@
 				<span>Partner Page</span>
 			</sidebar-item>
 
+            <!-- About Us Page  -->
+            <sidebar-item :href="route('appearance.about')" :active="route().current('appearance.about')">
+
+                <i class="ti-info text-lg w-5 mr-4"></i>
+                <span>About us Page</span>
+            </sidebar-item>
+
 			<!-- Other page -->
 			<sidebar-item :href="route('appearance.others')" :active="route().current('appearance.others')">
 				<other-page-icon class="w-5 mr-4"></other-page-icon>

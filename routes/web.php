@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsPageController;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Order;
@@ -107,6 +108,10 @@ Route::middleware(['auth'])->group(function () {
     // Partner page routes
     Route::get('/appearance/partner', [PartnerPageController::class, 'index'])->name('appearance.partner');
     Route::post('/appearance/partner', [PartnerPageController::class, 'store'])->name('appearance.partner.store');
+
+    // About us page routes
+    Route::get('/appearance/about-us', [AboutUsPageController::class, 'index'])->name('appearance.about');
+    Route::post('/appearance/about-us', [AboutUsPageController::class, 'store'])->name('appearance.about.store');
 
     // Other page routes
     Route::get('/appearance/others', [OtherPageController::class, 'index'])->name('appearance.others');
