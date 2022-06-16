@@ -148,7 +148,7 @@
             <!-- About Us Page  -->
             <sidebar-item :href="route('appearance.about')" :active="route().current('appearance.about')">
 
-                <i class="ti-info text-lg w-5 mr-4"></i>
+                <i class="ti-info-alt text-lg w-5 mr-4"></i>
                 <span>About us Page</span>
             </sidebar-item>
 
