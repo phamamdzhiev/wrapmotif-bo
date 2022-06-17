@@ -24,6 +24,13 @@
                     <jet-input-error :message="form.errors.image_sign" class="mt-2"/>
                 </div>
 
+                <!--Page Content -->
+                <div class="col-span-12 sm:col-span-6 editor-container">
+                    <jet-label class="mb-2" for="content" value="Page Content"/>
+                    <QuillEditor v-model:content="form.content" contentType="html" theme="snow"/>
+                    <jet-input-error :message="form.errors.content" class="mt-2"/>
+                </div>
+
                 <!-- Image -->
                 <div class="col-span-6 sm:col-span-4">
                     <jet-label for="image" value="Image bottom (Second)"/>
@@ -33,15 +40,6 @@
                         size: 10MB/10240KB.</small>
                     <jet-input-error :message="form.errors.image" class="mt-2"/>
                 </div>
-
-                <!--Page Content -->
-                <div class="col-span-12 sm:col-span-6 editor-container">
-                    <jet-label class="mb-2" for="content" value="Page Content"/>
-                    <QuillEditor v-model:content="form.content" contentType="html" theme="snow"/>
-                    <jet-input-error :message="form.errors.content" class="mt-2"/>
-                </div>
-
-
             </template>
 
             <template #actions>
