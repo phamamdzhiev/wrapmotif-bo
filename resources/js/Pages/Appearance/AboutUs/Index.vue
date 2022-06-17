@@ -16,6 +16,16 @@
 
                 <!-- Image -->
                 <div class="col-span-6 sm:col-span-4">
+                    <jet-label for="image_sign" value="Image bottom (Second)"/>
+                    <jet-image-input :url="$page.props.aboutUs?.secondaryMediaUrl"
+                                     @change="handleImageChangeSing"></jet-image-input>
+                    <small class="mt-2 font-thin text-gray-400">* Image should be minimum 1920x1080 px. Maximum file
+                        size: 10MB/10240KB.</small>
+                    <jet-input-error :message="form.errors.image_sign" class="mt-2"/>
+                </div>
+
+                <!-- Image -->
+                <div class="col-span-6 sm:col-span-4">
                     <jet-label for="image" value="Image top (First)"/>
                     <jet-image-input :url="$page.props.aboutUs?.primaryMediaUrl"
                                      @change="handleImageChange"></jet-image-input>
@@ -32,15 +42,6 @@
                 </div>
 
 
-                <!-- Image -->
-                <div class="col-span-6 sm:col-span-4">
-                    <jet-label for="image_sign" value="Image bottom (Second)"/>
-                    <jet-image-input :url="$page.props.aboutUs?.secondaryMediaUrl"
-                                     @change="handleImageChangeSing"></jet-image-input>
-                    <small class="mt-2 font-thin text-gray-400">* Image should be minimum 1920x1080 px. Maximum file
-                        size: 10MB/10240KB.</small>
-                    <jet-input-error :message="form.errors.image_sign" class="mt-2"/>
-                </div>
             </template>
 
             <template #actions>
