@@ -29,11 +29,11 @@ class ChargeSucceedJob implements ShouldQueue
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
-        $userID = Auth::id();
+        $customerID = Auth::guard('customers')->id();
 
-        if ($userID) {
+        if ($customerID) {
             Payment::create([
-                'user_id' => $userID,
+                'user_id' => $customerID,
                 'stripe_id' => $charge['id'],
                 'subtotal' => $charge['amount'],
                 'total' => $charge['amount'],
