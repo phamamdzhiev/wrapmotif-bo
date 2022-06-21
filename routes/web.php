@@ -218,3 +218,6 @@ Route::get('preview-designs/{design}/notification', function (PreviewDesign $des
 Route::get('messages/{message}/notification', function (Contact $message) {
     return (new NewMessage($message))->toMail($message->email);
 });
+
+//Stripe webhook routes
+Route::stripeWebhooks('webhook-route-configured-at-the-stripe-dashboard');
