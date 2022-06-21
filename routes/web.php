@@ -97,7 +97,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/appearance/designs/design-characters/{character}/destroy', [DesignCharacterController::class, 'destroy'])->name('appearance.designs.designs-character.delete');
 
 
-
     // Custom Order page route
     Route::get('/appearance/custom-orders', [CustomOrderPageController::class, 'index'])->name('appearance.custom-orders');
     Route::post('/appearance/custom-orders/slider', [CustomOrderPageController::class, 'add'])->name('appearance.custom-orders.slider');
@@ -165,10 +164,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-
-
-
 // Email routes
 Route::get('orders/{order}/mail', function (Order $order) {
     return new OrderCompletedMail($order);
@@ -217,6 +212,11 @@ Route::get('preview-designs/{design}/notification', function (PreviewDesign $des
 
 Route::get('messages/{message}/notification', function (Contact $message) {
     return (new NewMessage($message))->toMail($message->email);
+});
+
+//temp solution to see Payments
+Route::get('stripe-test', function () {
+    return response()->json(\App\Models\Payment::all());
 });
 
 //Stripe webhook routes
