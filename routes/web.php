@@ -214,10 +214,5 @@ Route::get('messages/{message}/notification', function (Contact $message) {
     return (new NewMessage($message))->toMail($message->email);
 });
 
-//temp solution to see Payments
-Route::get('stripe-test', function () {
-    return response()->json(\App\Models\Payment::all());
-});
-
 //Stripe webhook routes
 Route::stripeWebhooks('webhook-route-configured-at-the-stripe-dashboard');

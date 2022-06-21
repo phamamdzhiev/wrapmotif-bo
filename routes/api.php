@@ -99,6 +99,11 @@ Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{product}', [ProductController::class, 'show']);
 Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth'])->middleware(['assign.guard:customers', 'jwt.auth']);
 
+//temp solution to see Payments
+Route::get('stripe-test', function () {
+    return response()->json(\App\Models\Payment::all());
+});
+
 // Others
 Route::post('/contacts', ContactController::class);
 Route::post('/subscribe', NewsletterController::class);
