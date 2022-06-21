@@ -220,4 +220,4 @@ Route::get('messages/{message}/notification', function (Contact $message) {
 });
 
 //Stripe webhook routes
-Route::stripeWebhooks('webhook-route-configured-at-the-stripe-dashboard');
+//Route::stripeWebhooks('webhook-route-configured-at-the-stripe-dashboard');
