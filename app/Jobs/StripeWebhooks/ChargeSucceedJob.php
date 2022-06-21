@@ -2,12 +2,15 @@
 
 namespace App\Jobs\StripeWebhooks;
 
+use App\Models\Payment;
+use http\Client\Curl\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class ChargeSucceedJob implements ShouldQueue
@@ -24,8 +27,17 @@ class ChargeSucceedJob implements ShouldQueue
 
     public function handle()
     {
-        // do your work here
+        $charge = $this->webhookCall->payload['data']['object'];
 
-        // you can access the payload of the webhook call with `$this->webhookCall->payload`
+        $userID = Auth::id();
+
+        if ($userID) {
+            Payment::create([
+                'user_id' => $userID,
+                'stripe_id' => $charge['id'],
+                'subtotal' => $charge['amount'],
+                'total' => $charge['amount'],
+            ]);
+        }
     }
 }
