@@ -17,6 +17,9 @@ class StripeController extends Controller
         $total = $request->input('total');
         $currency = $request->input('currency');
 
+        dump($currency);
+        dump($total);
+
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
@@ -27,7 +30,7 @@ class StripeController extends Controller
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => $currency,
+                            'currency' => strtolower($currency),
                             'unit_amount' => $total * 1000,
                         ],
                     ]
