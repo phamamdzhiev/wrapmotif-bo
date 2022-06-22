@@ -9,28 +9,33 @@ use Stripe\StripeClient;
 
 class StripeController extends Controller
 {
+    /**
+     * @throws \Exception
+     */
     public function getSession(): Session
     {
-        $stripe = new StripeClient(env('STRIPE_SECRET'));
+        try {
+            $stripe = new StripeClient(env('STRIPE_SECRET'));
 
-        $checkout = $stripe->checkout->sessions->create([
-            'mode' => 'payment',
-            'success_url' => '/',
-            'cancel_url' => '/',
-            'line-items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'usd',
-                        'unit_amount' => 500,
-                        'product_data' => [
-                            'name' => 'Testov produkt'
-                        ]
-                    ],
-                    'quantity' => 1
+            return $stripe->checkout->sessions->create([
+                'mode' => 'payment',
+                'success_url' => '/',
+                'cancel_url' => '/',
+                'line-items' => [
+                    [
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'unit_amount' => 500,
+                            'product_data' => [
+                                'name' => 'Testov produkt'
+                            ]
+                        ],
+                        'quantity' => 1
+                    ]
                 ]
-            ]
-        ]);
-
-        return $checkout;
+            ]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }
