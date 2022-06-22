@@ -34,9 +34,9 @@ class StripeController extends Controller
                             'currency' => strtolower($currency),
                             'unit_amount' => $total * 1000,
                         ],
+                        'quantity' => $quantity
                     ]
                 ],
-                'quantity' => $quantity
             ]);
 
             return response()->json($checkout);
