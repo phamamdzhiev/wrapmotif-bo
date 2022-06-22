@@ -33,6 +33,9 @@ class StripeController extends Controller
                         'price_data' => [
                             'currency' => strtolower($currency),
                             'unit_amount' => $total * 1000,
+                            'product data' => [
+                                'name' => 'Cart Checkout'
+                            ]
                         ],
                         'quantity' => $quantity
                     ]
