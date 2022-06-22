@@ -22,7 +22,7 @@ class FaqController extends Controller
         $request->validate([
             'type'       => 'required|string|max:100',
             'question'    => 'required|string|max:100',
-            'answer'        => 'required|string|max:500',
+            'answer'        => 'required|string|max:1500',
         ]);
 
         DB::transaction(function () use ($request) {
