@@ -12,25 +12,22 @@ class StripeController extends Controller
     /**
      * @throws \Exception
      */
-    public function getSession(): Session
+    public function getSession(Request $request): Session
     {
+        dd($request->all());
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
             return $stripe->checkout->sessions->create([
                 'mode' => 'payment',
-                'success_url' => 'https://wrapmotif.com',
-                'cancel_url' => 'https://wrapmotif.com',
+                'success_url' => 'https://wrapmotif.com/cart',
+                'cancel_url' => 'https://wrapmotif.com/cart',
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => 'usd',
+                            'currency' => 'eur',
                             'unit_amount' => 500,
-                            'product_data' => [
-                                'name' => 'Testov produkt'
-                            ]
                         ],
-                        'quantity' => 1
                     ]
                 ]
             ]);
