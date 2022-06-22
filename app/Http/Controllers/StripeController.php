@@ -14,7 +14,9 @@ class StripeController extends Controller
      */
     public function getSession(Request $request): Session
     {
-        dd($request->all());
+        $total = $request->input('total');
+        $currency = $request->input('currency');
+
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
@@ -25,8 +27,8 @@ class StripeController extends Controller
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => 'eur',
-                            'unit_amount' => 500,
+                            'currency' => $currency,
+                            'unit_amount' => $total * 1000,
                         ],
                     ]
                 ]
