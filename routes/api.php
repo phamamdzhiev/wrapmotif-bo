@@ -104,6 +104,8 @@ Route::get('stripe-test', function () {
     return response()->json(\App\Models\Payment::all());
 });
 
+Route::get('getSession', [\App\Http\Controllers\StripeController::class, 'getSession']);
+
 // Others
 Route::post('/contacts', ContactController::class);
 Route::post('/subscribe', NewsletterController::class);
