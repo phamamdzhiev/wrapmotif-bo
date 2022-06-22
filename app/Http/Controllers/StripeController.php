@@ -19,8 +19,8 @@ class StripeController extends Controller
 
             return $stripe->checkout->sessions->create([
                 'mode' => 'payment',
-                'success_url' => '/',
-                'cancel_url' => '/',
+                'success_url' => 'https://wrapmotif.com',
+                'cancel_url' => 'https://wrapmotif.com',
                 'line_items' => [
                     [
                         'price_data' => [
