@@ -14,11 +14,11 @@ class StripeController extends Controller
      */
     public function getSession(Request $request): \Illuminate\Http\JsonResponse
     {
-        $total = $request->input('total');
-        $currency = $request->input('currency');
+        $total = $request->input('t');
+        $currency = $request->input('c');
 
-        dump($currency);
-        dump($total);
+//        dump($currency);
+//        dump($total);
 
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
