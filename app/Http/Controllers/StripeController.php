@@ -21,7 +21,7 @@ class StripeController extends Controller
                 'mode' => 'payment',
                 'success_url' => '/',
                 'cancel_url' => '/',
-                'line-items' => [
+                'line_items' => [
                     [
                         'price_data' => [
                             'currency' => 'usd',
