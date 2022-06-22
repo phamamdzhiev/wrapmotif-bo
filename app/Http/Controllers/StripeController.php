@@ -12,7 +12,7 @@ class StripeController extends Controller
     /**
      * @throws \Exception
      */
-    public function getSession(Request $request): Session
+    public function getSession(Request $request): \Illuminate\Http\JsonResponse
     {
         $total = $request->input('total');
         $currency = $request->input('currency');
@@ -23,7 +23,7 @@ class StripeController extends Controller
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
-            return $stripe->checkout->sessions->create([
+            $checkout = $stripe->checkout->sessions->create([
                 'mode' => 'payment',
                 'success_url' => 'https://wrapmotif.com/cart',
                 'cancel_url' => 'https://wrapmotif.com/cart',
@@ -36,6 +36,8 @@ class StripeController extends Controller
                     ]
                 ]
             ]);
+
+            return response()->json($checkout);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
