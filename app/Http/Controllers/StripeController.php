@@ -16,6 +16,7 @@ class StripeController extends Controller
     {
         $total = $request->input('t');
         $currency = $request->input('c');
+        $quantity = $request->input('q');
 
 //        dump($currency);
 //        dump($total);
@@ -34,7 +35,8 @@ class StripeController extends Controller
                             'unit_amount' => $total * 1000,
                         ],
                     ]
-                ]
+                ],
+                'quantity' => $quantity
             ]);
 
             return response()->json($checkout);
