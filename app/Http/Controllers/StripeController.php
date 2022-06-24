@@ -14,12 +14,10 @@ class StripeController extends Controller
      */
     public function getSession(Request $request): \Illuminate\Http\JsonResponse
     {
-        $total = $request->input('t');
-        $currency = $request->input('c');
+        $total = $request->input('c');
+//        $currency = $request->input('c');
         $quantity = $request->input('q');
 
-//        dump($currency);
-//        dump($total);
 
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
@@ -31,7 +29,7 @@ class StripeController extends Controller
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => strtolower($currency),
+                            'currency' => 'eur',
                             'unit_amount' => $total * 100,
                             'product_data' => [
                                 'name' => 'Total amount'
