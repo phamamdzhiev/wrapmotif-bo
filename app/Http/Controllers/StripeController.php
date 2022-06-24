@@ -12,7 +12,7 @@ class StripeController extends Controller
     /**
      * @throws \Exception
      */
-    public function getSession(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): \Illuminate\Http\JsonResponse
     {
         $total = $request->input('c');
 //        $currency = $request->input('c');
@@ -23,6 +23,7 @@ class StripeController extends Controller
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
             $checkout = $stripe->checkout->sessions->create([
+                'customer_email' => 'hamamdzhiev@example.com',
                 'mode' => 'payment',
                 'success_url' => 'https://wrapmotif.com/cart',
                 'cancel_url' => 'https://wrapmotif.com/cart',
@@ -38,6 +39,10 @@ class StripeController extends Controller
                         'quantity' => $quantity
                     ]
                 ],
+                'metadata' => [
+                    'test' => 'this is test metadata',
+                    'coupon' => 'Coupon ID: 28541AB'
+                ]
             ]);
 
             return response()->json($checkout);
