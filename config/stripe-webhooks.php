@@ -18,9 +18,6 @@ return [
         'payment_intent_succeeded' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
         'payment_intent_payment_failed' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
         'charge_succeeded' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
-//        'payment_intent_succeeded' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
-//         'source_chargeable' => \App\Jobs\StripeWebhooks\HandleChargeableSource::class,
-        // 'charge_failed' => \App\Jobs\StripeWebhooks\HandleFailedCharge::class,
     ],
 
     /*
@@ -38,5 +35,5 @@ return [
      * When disabled, the package will not verify if the signature is valid.
      * This can be handy in local environments.
      */
-    'verify_signature' => env('STRIPE_SIGNATURE_VERIFY', false),
+    'verify_signature' => env('STRIPE_SIGNATURE_VERIFY', true),
 ];
