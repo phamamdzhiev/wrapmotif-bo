@@ -29,7 +29,7 @@
         "spatie/laravel-directory-cleanup": "^1.8",
         "spatie/laravel-medialibrary": "^9.6",
         "spatie/laravel-newsletter": "^4.10",
-        "spatie/laravel-stripe-webhooks": "^2.6w
+        "spatie/laravel-stripe-webhooks": "^2.6",
         "stripe/stripe-php": "^7.87",
         "tightenco/ziggy": "^1.0",
         "tucker-eric/eloquentfilter": "^3.0",
