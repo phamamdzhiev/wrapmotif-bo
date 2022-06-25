@@ -101,6 +101,7 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 
 //temp solution to see Payments
 Route::get('stripe-test', function () {
+    \Illuminate\Support\Facades\DB::raw('DELETE FROM orders ');
     return response()->json(\App\Models\Payment::all());
 });
 
