@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use AWS\CRT\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
@@ -20,6 +21,7 @@ class StripeController extends Controller
         $currency = $request->input('currency');
         $quantity = $request->input('quantity');
 
+        \Illuminate\Support\Facades\Log::emergency('SOS PEDAL 222');
 
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
@@ -58,7 +60,7 @@ class StripeController extends Controller
                 ],
                 'payment_intent_data' => [
                     'metadata' => [
-                        'order_id' => $order->id
+                        'order_id' => (int)$order->id
                     ]
                 ],
             ]);
