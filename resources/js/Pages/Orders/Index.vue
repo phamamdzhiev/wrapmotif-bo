@@ -44,6 +44,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{row.customer.name}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{row.grandTotalFormatted}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{row.customerGrandTotalFormatted}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{JSON.stringify(row)}}</td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <inertia-link class="btn btn-primary mr-2" :href="route('orders.show', row.id)">
