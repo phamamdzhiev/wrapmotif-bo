@@ -115,3 +115,5 @@ Route::post('/subscribe', NewsletterController::class);
 
 Route::get('/config', [ConfigController::class, 'index']);
 Route::get('/exchange-rates', [AjaxController::class, 'exchangeRate']);
+//Stripe webhook routes
+Route::stripeWebhooks('webhook-route-configured-at-the-stripe-dashboard');
