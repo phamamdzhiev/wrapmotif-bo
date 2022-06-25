@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\PreviewDesignController;
 use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\CustomerProfileController;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,8 +102,10 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 
 //temp solution to see Payments
 Route::post('stripe-test', function () {
-//    \App\Models\OrderItem::truncate();
+    Schema::disableForeignKeyConstraints();
+    \App\Models\OrderItem::truncate();
     \App\Models\Order::truncate();
+    Schema::enableForeignKeyConstraints();
     return response()->json('done');
 });
 
