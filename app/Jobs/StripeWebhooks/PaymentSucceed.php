@@ -31,11 +31,11 @@ PaymentSucceed implements ShouldQueue
 
     public function handle()
     {
+        dd(222);
         $charge = $this->webhookCall->payload['data']['object'];
 
         Log::emergency(json_encode($charge));
 
 
-        dd($charge);
     }
 }

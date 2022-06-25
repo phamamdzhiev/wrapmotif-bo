@@ -27,6 +27,7 @@ class ChargeSucceedJob implements ShouldQueue
 
     public function handle()
     {
+        dd(111);
         $charge = $this->webhookCall->payload['data']['object'];
 
         $customerID = Auth::guard('customers')->id();
