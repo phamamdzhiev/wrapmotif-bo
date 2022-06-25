@@ -101,6 +101,12 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 
 //temp solution to see Payments
 Route::get('stripe-test', function () {
+    \App\Models\Payment::create([
+        'user_id' => '23',
+        'stripe_id' => '2',
+        'subtotal' => '2',
+        'total' => '2',
+    ]);
     return response()->json(\App\Models\Payment::all());
 });
 
