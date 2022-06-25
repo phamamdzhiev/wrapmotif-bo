@@ -3,16 +3,11 @@
 namespace App\Jobs\StripeWebhooks;
 
 use App\Models\Order;
-use App\Models\Payment;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class
@@ -29,13 +24,21 @@ PaymentSucceed implements ShouldQueue
         $this->webhookCall = $webhookCall;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function handle()
     {
-        dd(222);
         $charge = $this->webhookCall->payload['data']['object'];
 
-        Log::emergency(json_encode($charge));
+        $orderID = $charge['metadata']['order_id'];
 
-
+        try {
+            /** @var Order $order */
+            $order = Order::find($orderID);
+            $order->update(['status' => 1]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }
