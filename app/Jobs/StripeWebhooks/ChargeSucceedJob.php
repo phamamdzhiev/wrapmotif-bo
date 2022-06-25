@@ -2,6 +2,7 @@
 
 namespace App\Jobs\StripeWebhooks;
 
+use App\Models\Order;
 use App\Models\Payment;
 use http\Client\Curl\User;
 use Illuminate\Bus\Queueable;
@@ -28,17 +29,15 @@ class ChargeSucceedJob implements ShouldQueue
     public function handle()
     {
         $charge = $this->webhookCall->payload['data']['object'];
-        dd($charge);
 
-        $customerID = Auth::guard('customers')->id();
+        $orderID = $charge['metadata']['order_id'];
 
-        if ($customerID) {
-            Payment::create([
-                'user_id' => $customerID,
-                'stripe_id' => $charge['id'],
-                'subtotal' => $charge['amount'],
-                'total' => $charge['amount'],
-            ]);
+        try {
+            /** @var Order $order */
+            $order = Order::find($orderID);
+            $order->update(['status' => 1]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 }
