@@ -42,8 +42,8 @@ class StripeController extends Controller
             $checkout = $stripe->checkout->sessions->create([
                 'customer_email' => Auth::guard('customers')->user()->email,
                 'mode' => 'payment',
-                'success_url' => env('FRONTEND_URL') . '/cart',
-                'cancel_url' => env('FRONTEND_URL') . '/download/' . $order->id,
+                'success_url' => env('FRONTEND_URL') . '/download/' . $order->id,
+                'cancel_url' => env('FRONTEND_URL') . '/cart',
                 'line_items' => [
                     [
                         'price_data' => [

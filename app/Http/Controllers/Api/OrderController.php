@@ -85,9 +85,10 @@ class OrderController extends Controller
 
     public function getOrder($id): \Illuminate\Http\JsonResponse
     {
+        /** @var Order $order */
         $order = Order::find($id);
 
-        return \response()->json($order);
+        return \response()->json($order->only('status'));
     }
 
     /**
