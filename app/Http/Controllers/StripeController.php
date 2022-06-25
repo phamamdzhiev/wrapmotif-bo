@@ -56,7 +56,7 @@ class StripeController extends Controller
                         'quantity' => $quantity
                     ]
                 ],
-                'payment_intent' => [
+                'payment_intent_data' => [
                     'metadata' => [
                         'order_id' => $order->id
                     ]
