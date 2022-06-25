@@ -101,7 +101,7 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 
 //temp solution to see Payments
 Route::get('stripe-test', function () {
-    \Illuminate\Support\Facades\DB::raw('DELETE FROM orders ');
+    \Illuminate\Support\Facades\DB::raw('DELETE FROM orders WHERE id IN(45,44)');
     return response()->json(\App\Models\Payment::all());
 });
 
