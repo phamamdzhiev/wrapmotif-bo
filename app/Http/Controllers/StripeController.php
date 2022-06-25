@@ -54,7 +54,8 @@ class StripeController extends Controller
                     'customerTotalDiscount' => $request->customerTotalDiscount,
                     'grandTotal' => ($request->totalAmount + $request->vatAmount) - $request->totalDiscount,
                     'customerGrandTotal' => ($request->customerAmount + $request->customerVatAmount) - $request->customerTotalDiscount,
-                    'note' => $request->note
+                    'note' => $request->note,
+                    'orderItems' => $request->orderItems
                 ]
             ]);
 
