@@ -15,9 +15,9 @@ class StripeController extends Controller
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse
     {
-        $total = $request->input('c');
-//        $currency = $request->input('c');
-        $quantity = $request->input('q');
+        $total = $request->input('total');
+        $currency = $request->input('currency');
+        $quantity = $request->input('quantity');
 
 
         try {
@@ -31,7 +31,7 @@ class StripeController extends Controller
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => 'eur',
+                            'currency' => strtolower($currency),
                             'unit_amount' => $total * 100,
                             'product_data' => [
                                 'name' => 'Total amount'
@@ -41,8 +41,20 @@ class StripeController extends Controller
                     ]
                 ],
                 'metadata' => [
-                    'test' => 'this is test metadata',
-                    'coupon' => 'Coupon ID: 28541AB'
+                    'customerId' => $request->customerId,
+                    'couponId' => $request->couponId,
+                    'customerCurrency' => $request->customerCurrency,
+                    'totalAmount' => $request->totalAmount,
+                    'customerAmount' => $request->customerAmount,
+                    'vat' => $request->vat,
+                    'vatType' => $request->vatType,
+                    'vatAmount' => $request->vatAmount,
+                    'customerVatAmount' => $request->customerVatAmount,
+                    'totalDiscount' => $request->totalDiscount,
+                    'customerTotalDiscount' => $request->customerTotalDiscount,
+                    'grandTotal' => ($request->totalAmount + $request->vatAmount) - $request->totalDiscount,
+                    'customerGrandTotal' => ($request->customerAmount + $request->customerVatAmount) - $request->customerTotalDiscount,
+                    'note' => $request->note
                 ]
             ]);
 
