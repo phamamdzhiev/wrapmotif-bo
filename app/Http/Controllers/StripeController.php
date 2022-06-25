@@ -31,10 +31,10 @@ class StripeController extends Controller
             foreach ($orderItems as $item) {
                 $order->orderItems()->create(
                     [
-                        'productId'        => $item['productId'],
-                        'amount'           => $item['amount'],
-                        'customerAmount'   => $item['customerAmount'],
-                        'colorChangeId'    => $item['colorChangeId'] ?? null,
+                        'productId' => $item['productId'],
+                        'amount' => $item['amount'],
+                        'customerAmount' => $item['customerAmount'],
+                        'colorChangeId' => $item['colorChangeId'] ?? null,
                     ]
                 );
             }
@@ -42,7 +42,7 @@ class StripeController extends Controller
             $checkout = $stripe->checkout->sessions->create([
                 'customer_email' => Auth::guard('customers')->user()->email,
                 'mode' => 'payment',
-                'success_url' => env('FRONTEND_URL') . '/cart?success=true',
+                'success_url' => env('FRONTEND_URL') . '/cart',
                 'cancel_url' => env('FRONTEND_URL') . '/cart',
                 'line_items' => [
                     [
@@ -56,9 +56,11 @@ class StripeController extends Controller
                         'quantity' => $quantity
                     ]
                 ],
-                'metadata' => [
-                    'order_id' => $order->id
-                ]
+                'payment_intent' => [
+                    'metadata' => [
+                        'order_id' => $order->id
+                    ]
+                ],
             ]);
 
             return response()->json($checkout);
