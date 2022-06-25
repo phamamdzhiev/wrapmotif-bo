@@ -35,23 +35,7 @@ class OrderController extends Controller
     {
         $order = DB::transaction(function () use ($request) {
 
-            $order = Order::create([
-                'date'                  => Carbon::now(),
-                'customerId'            => $request->customerId,
-                'couponId'              => $request->couponId,
-                'customerCurrency'      => $request->customerCurrency,
-                'totalAmount'           => $request->totalAmount,
-                'customerAmount'        => $request->customerAmount,
-                'vat'                   => $request->vat,
-                'vatType'               => $request->vatType,
-                'vatAmount'             => $request->vatAmount,
-                'customerVatAmount'     => $request->customerVatAmount,
-                'totalDiscount'         => $request->totalDiscount,
-                'customerTotalDiscount' => $request->customerTotalDiscount,
-                'grandTotal'            => ($request->totalAmount - $request->totalDiscount ) + $request->vatAmount ,
-                'customerGrandTotal'    => ($request->customerAmount + $request->customerVatAmount) - $request->customerTotalDiscount,
-                'note'                  => $request->note,
-            ]);
+           $order = Order::createOrder($request);
 
             foreach ($request->orderItems as $item) {
                 $order->orderItems()->create(

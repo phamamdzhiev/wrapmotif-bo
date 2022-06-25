@@ -7,6 +7,8 @@ use App\Facades\Helper;
 use App\Traits\Trashed;
 use Akaunting\Money\Money;
 use Akaunting\Money\Currency;
+use Carbon\Carbon;
+use Illuminate\Http\Client\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -215,7 +217,7 @@ class Order extends Model implements HasMedia
 
     /**
      * Get the invoice no attribute
-     * 
+     *
      * @return string
      */
     public function getInvoiceNoAttribute()
@@ -234,11 +236,36 @@ class Order extends Model implements HasMedia
     /**
      * Scope a query to only include popular users.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCustomerFilter($query)
     {
         return $query->where('customer_id', auth()->user()->id);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
+    public static function createOrder(\Illuminate\Http\Request $request) : Order
+    {
+        return self::create([
+            'date' => Carbon::now(),
+            'customerId' => $request->customerId,
+            'couponId' => $request->couponId,
+            'customerCurrency' => $request->customerCurrency,
+            'totalAmount' => $request->totalAmount,
+            'customerAmount' => $request->customerAmount,
+            'vat' => $request->vat,
+            'vatType' => $request->vatType,
+            'vatAmount' => $request->vatAmount,
+            'customerVatAmount' => $request->customerVatAmount,
+            'totalDiscount' => $request->totalDiscount,
+            'customerTotalDiscount' => $request->customerTotalDiscount,
+            'grandTotal' => ($request->totalAmount - $request->totalDiscount) + $request->vatAmount,
+            'customerGrandTotal' => ($request->customerAmount + $request->customerVatAmount) - $request->customerTotalDiscount,
+            'note' => $request->note,
+        ]);
     }
 }

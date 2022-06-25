@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
@@ -15,8 +16,6 @@ class StripeController extends Controller
      */
     public function designPayment(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->dd();
-
         $total = $request->input('total');
         $currency = $request->input('currency');
         $quantity = $request->input('quantity');
@@ -24,6 +23,21 @@ class StripeController extends Controller
 
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
+
+            $order = Order::createOrder($request);
+
+            $orderItems = json_decode($request->orderItems, true);
+
+            foreach ($orderItems as $item) {
+                $order->orderItems()->create(
+                    [
+                        'productId'        => $item['productId'],
+                        'amount'           => $item['amount'],
+                        'customerAmount'   => $item['customerAmount'],
+                        'colorChangeId'    => $item['colorChangeId'] ?? null,
+                    ]
+                );
+            }
 
             $checkout = $stripe->checkout->sessions->create([
                 'customer_email' => Auth::guard('customers')->user()->email,
@@ -43,22 +57,7 @@ class StripeController extends Controller
                     ]
                 ],
                 'metadata' => [
-                    'cart' => 'design_cart',
-                    'customerId' => $request->customerId,
-                    'couponId' => $request->couponId,
-                    'customerCurrency' => $request->customerCurrency,
-                    'totalAmount' => $request->totalAmount,
-                    'customerAmount' => $request->customerAmount,
-                    'vat' => $request->vat,
-                    'vatType' => $request->vatType,
-                    'vatAmount' => $request->vatAmount,
-                    'customerVatAmount' => $request->customerVatAmount,
-                    'totalDiscount' => $request->totalDiscount,
-                    'customerTotalDiscount' => $request->customerTotalDiscount,
-                    'grandTotal' => ($request->totalAmount + $request->vatAmount) - $request->totalDiscount,
-                    'customerGrandTotal' => ($request->customerAmount + $request->customerVatAmount) - $request->customerTotalDiscount,
-                    'note' => $request->note,
-                    'orderItems' => $request->orderItems
+                    'order_id' => $order->id
                 ]
             ]);
 
