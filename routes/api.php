@@ -100,9 +100,9 @@ Route::get('products/{product}', [ProductController::class, 'show']);
 Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth'])->middleware(['assign.guard:customers', 'jwt.auth']);
 
 //temp solution to see Payments
-Route::get('stripe-test', function () {
+Route::post('stripe-test', function () {
     \Illuminate\Support\Facades\DB::raw('DELETE FROM orders WHERE id IN(45,44)');
-    return response()->json(\App\Models\Payment::all());
+    return response()->json('done');
 });
 
 Route::post('create-session/design', [\App\Http\Controllers\StripeController::class, 'designPayment']);
