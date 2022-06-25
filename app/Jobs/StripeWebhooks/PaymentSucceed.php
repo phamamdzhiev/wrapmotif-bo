@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class PaymentSucceed implements ShouldQueue
@@ -29,7 +30,7 @@ class PaymentSucceed implements ShouldQueue
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
-        dump($charge);
+        Log::info($charge);
 
         return $charge;
 

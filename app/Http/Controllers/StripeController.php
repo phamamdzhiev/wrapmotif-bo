@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
 use Stripe\StripeClient;
 
@@ -23,10 +24,10 @@ class StripeController extends Controller
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
             $checkout = $stripe->checkout->sessions->create([
-                'customer_email' => 'hamamdzhiev@example.com',
+                'customer_email' => Auth::guard('customers')->user()->email,
                 'mode' => 'payment',
-                'success_url' => 'https://wrapmotif.com/cart',
-                'cancel_url' => 'https://wrapmotif.com/cart',
+                'success_url' => env('FRONTEND_URL') . '/cart',
+                'cancel_url' => env('FRONTEND_URL') . '/cart',
                 'line_items' => [
                     [
                         'price_data' => [
