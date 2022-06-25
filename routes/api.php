@@ -63,7 +63,6 @@ Route::group(['middleware' => ['assign.guard:customers']], function () {
 
         Route::apiResource('orders', OrderController::class)->except('update', 'delete');
         Route::get('order-items', [OrderController::class, 'orderItems']);
-        Route::get('order/{id}', [OrderController::class, 'getOrder']);
 
         Route::apiResource('/custom-orders', CustomOrderController::class)->except('update', 'delete');
         Route::apiResource('color-changes', ColorChangeController::class)->except('update', 'delete');
@@ -124,3 +123,4 @@ Route::get('/config', [ConfigController::class, 'index']);
 Route::get('/exchange-rates', [AjaxController::class, 'exchangeRate']);
 //Stripe webhook routes
 Route::stripeWebhooks('payment/succeed');
+Route::get('order/{id}', [OrderController::class, 'getOrder']);
