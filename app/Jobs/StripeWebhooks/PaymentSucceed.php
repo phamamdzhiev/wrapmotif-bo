@@ -31,6 +31,16 @@ class PaymentSucceed implements ShouldQueue
     public function handle()
     {
         $charge = $this->webhookCall->payload['data']['object'];
+        $customerID = Auth::guard('customers')->id();
+
+        if ($customerID) {
+            Payment::create([
+                'user_id' => $customerID,
+                'stripe_id' => $charge['id'],
+                'subtotal' => $charge['amount'],
+                'total' => $charge['amount'],
+            ]);
+        }
 
         if ($charge['metadata']['cart'] === 'design_cart') {
             /** @var Order $order */
