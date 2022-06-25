@@ -21,8 +21,6 @@ class StripeController extends Controller
         $currency = $request->input('currency');
         $quantity = $request->input('quantity');
 
-        \Illuminate\Support\Facades\Log::emergency('SOS PEDAL 222');
-
         try {
             $stripe = new StripeClient(env('STRIPE_SECRET'));
 
@@ -45,7 +43,7 @@ class StripeController extends Controller
                 'customer_email' => Auth::guard('customers')->user()->email,
                 'mode' => 'payment',
                 'success_url' => env('FRONTEND_URL') . '/cart',
-                'cancel_url' => env('FRONTEND_URL') . '/cart',
+                'cancel_url' => env('FRONTEND_URL') . '/download/' . $order->id,
                 'line_items' => [
                     [
                         'price_data' => [
