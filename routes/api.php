@@ -101,7 +101,7 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 
 //temp solution to see Payments
 Route::post('stripe-test', function () {
-    \App\Models\OrderItem::truncate();
+//    \App\Models\OrderItem::truncate();
     \App\Models\Order::truncate();
     return response()->json('done');
 });
