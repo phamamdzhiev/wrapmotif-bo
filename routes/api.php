@@ -104,7 +104,10 @@ Route::get('stripe-test', function () {
     return response()->json(\App\Models\Payment::all());
 });
 
-Route::post('create-session', [\App\Http\Controllers\StripeController::class, 'index']);
+Route::post('create-session/design', [\App\Http\Controllers\StripeController::class, 'designPayment']);
+Route::post('create-session/color', [\App\Http\Controllers\StripeController::class, 'colorPayment']);
+Route::post('create-session/preview', [\App\Http\Controllers\StripeController::class, 'previewPayment']);
+Route::post('create-session/custom', [\App\Http\Controllers\StripeController::class, 'customPayment']);
 
 // Others
 Route::post('/contacts', ContactController::class);

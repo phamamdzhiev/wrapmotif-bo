@@ -13,7 +13,7 @@ class StripeController extends Controller
     /**
      * @throws \Exception
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function designPayment(Request $request): \Illuminate\Http\JsonResponse
     {
         $total = $request->input('total');
         $currency = $request->input('currency');
@@ -41,6 +41,7 @@ class StripeController extends Controller
                     ]
                 ],
                 'metadata' => [
+                    'cart' => 'design_cart',
                     'customerId' => $request->customerId,
                     'couponId' => $request->couponId,
                     'customerCurrency' => $request->customerCurrency,
@@ -63,5 +64,17 @@ class StripeController extends Controller
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+    }
+
+    public function colorPayment(Request $request)
+    {
+    }
+
+    public function previewPayment(Request $request)
+    {
+    }
+
+    public function customPayment(Request $request)
+    {
     }
 }
