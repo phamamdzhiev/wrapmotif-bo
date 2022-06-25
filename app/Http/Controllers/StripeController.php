@@ -15,6 +15,8 @@ class StripeController extends Controller
      */
     public function designPayment(Request $request): \Illuminate\Http\JsonResponse
     {
+        $request->dd();
+
         $total = $request->input('total');
         $currency = $request->input('currency');
         $quantity = $request->input('quantity');
@@ -26,7 +28,7 @@ class StripeController extends Controller
             $checkout = $stripe->checkout->sessions->create([
                 'customer_email' => Auth::guard('customers')->user()->email,
                 'mode' => 'payment',
-                'success_url' => env('FRONTEND_URL') . '/cart',
+                'success_url' => env('FRONTEND_URL') . '/cart?success=true',
                 'cancel_url' => env('FRONTEND_URL') . '/cart',
                 'line_items' => [
                     [
