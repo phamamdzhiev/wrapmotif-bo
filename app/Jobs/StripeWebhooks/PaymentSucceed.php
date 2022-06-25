@@ -33,7 +33,7 @@ PaymentSucceed implements ShouldQueue
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
-        Log::info(json_encode($charge));
+        Log::emergency(json_encode($charge));
 
 
         dd($charge);
