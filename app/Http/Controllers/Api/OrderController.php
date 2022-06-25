@@ -83,6 +83,13 @@ class OrderController extends Controller
         })->filter($request->all())->orderBy('id', 'desc')->paginate(10));
     }
 
+    public function getOrder($id): \Illuminate\Http\JsonResponse
+    {
+        $order = Order::find($id);
+
+        return \response()->json($order);
+    }
+
     /**
      * Get invoice of the order
      *
