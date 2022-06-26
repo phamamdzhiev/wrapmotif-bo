@@ -132,8 +132,12 @@ Route::post('payment/succeed', function (\Illuminate\Http\Request $request) {
 
         $orderID = $request['data']['object']['metadata']['order_id'];
         $isPaid = $request['data']['object']['paid'];
-        \Illuminate\Support\Facades\Log::info(json_encode($orderID));
-        \Illuminate\Support\Facades\Log::info(json_encode($isPaid));
 
+        /** @var \App\Models\Order $order */
+        $order = \App\Models\Order::findOrFail($orderID);
+
+        if ($isPaid) {
+            $order->update(['status' => 'paid']);
+        }
     }
 });
