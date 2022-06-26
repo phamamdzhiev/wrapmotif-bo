@@ -126,7 +126,8 @@ Route::get('/exchange-rates', [AjaxController::class, 'exchangeRate']);
 Route::get('order/{id}', [OrderController::class, 'getOrder']);
 
 Route::post('payment/succeed', function (\Illuminate\Http\Request $request) {
-    \Illuminate\Support\Facades\Log::emergency(json_encode($request->all()));
-    $request->dd();
+    \Illuminate\Support\Facades\Log::emergency(json_encode($request['type']));
+    \Illuminate\Support\Facades\Log::emergency(json_encode($request['data']['object']['data']['paid']));
+
 
 });
