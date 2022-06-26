@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\OrderCompletedJob;
+use App\Models\ColorChange;
 use App\Models\CustomOrder;
 use App\Models\Order;
 use App\Models\PreviewDesign;
@@ -148,6 +149,9 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
         } else if ($cart === 'custom') {
             /** @var CustomOrder $order */
             $order = CustomOrder::findOrFail($orderID);
+        } else if ($cart === 'color') {
+            /** @var ColorChange $order */
+            $order = ColorChange::findOrFail($orderID);
         }
 
         if (isset($order) && $isPaid) {

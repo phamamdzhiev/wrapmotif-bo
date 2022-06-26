@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomOrderRequest;
+use App\Models\ColorChange;
 use App\Models\CustomOrder;
 use App\Models\Order;
 use App\Models\PreviewDesign;
@@ -76,8 +77,41 @@ class StripeController extends Controller
         }
     }
 
-    public function colorPayment(Request $request)
+    public function colorPayment(Request $request): JsonResponse
     {
+        $colorOrder = ColorChange::createColorOrder($request);
+
+        $total = $request->input('total');
+        $currency = $request->input('customerCurrency');
+
+        $stripe = new StripeClient(env('STRIPE_SECRET'));
+
+        $checkout = $stripe->checkout->sessions->create([
+            'customer_email' => Auth::guard('customers')->user()->email,
+            'mode' => 'payment',
+            'success_url' => env('FRONTEND_URL') . '/preview-designs/greeting',
+            'cancel_url' => env('FRONTEND_URL') . '/cart',
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => strtolower($currency),
+                        'unit_amount' => $total * 100,
+                        'product_data' => [
+                            'name' => 'Total amount'
+                        ]
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'payment_intent_data' => [
+                'metadata' => [
+                    'cart' => 'preview',
+                    'order_id' => (int)$colorOrder->id
+                ]
+            ],
+        ]);
+
+        return response()->json($checkout);
     }
 
     public function previewPayment(Request $request): JsonResponse
@@ -120,9 +154,9 @@ class StripeController extends Controller
     public function customPayment(CustomOrderRequest $request): JsonResponse
     {
 
-        $customOrder =  DB::transaction(function () use ($request) {
+        $customOrder = DB::transaction(function () use ($request) {
             $customOrder = CustomOrder::create(array_merge($request->except('colors', 'tags', 'products', 'vehiclePhotos', 'referenceDesigns', 'token'), [
-                'grandTotal'         => $request->depositAmount + $request->vatAmount,
+                'grandTotal' => $request->depositAmount + $request->vatAmount,
                 'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
             ]));
 
@@ -156,7 +190,7 @@ class StripeController extends Controller
         $checkout = $stripe->checkout->sessions->create([
             'customer_email' => Auth::guard('customers')->user()->email,
             'mode' => 'payment',
-            'success_url' => env('FRONTEND_URL') . '/custom-designs/greeting',
+            'success_url' => env('FRONTEND_URL') . '/custom-design/greeting',
             'cancel_url' => env('FRONTEND_URL') . '/cart',
             'line_items' => [
                 [

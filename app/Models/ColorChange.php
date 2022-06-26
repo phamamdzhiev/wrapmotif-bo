@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\Trashed;
 use Akaunting\Money\Money;
 use Akaunting\Money\Currency;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -190,4 +192,31 @@ class ColorChange extends Model implements HasMedia
 
         return $result;
     }
+
+
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public static function createColorOrder(Request $request) : ColorChange
+    {
+        return self::create([
+            'date'              => Carbon::now(),
+            'customerId'        => $request->customerId,
+            'productId'         => $request->productId,
+            'colors'            => $request->colors,
+            'description'       => $request->description,
+            'depositAmount'     => $request->depositAmount,
+            'customerAmount'    => $request->customerAmount,
+            'customerCurrency'  => $request->customerCurrency,
+            'vat'               => $request->vat,
+            'vatType'           => $request->vatType,
+            'vatAmount'         => $request->vatAmount,
+            'customerVatAmount' => $request->customerVatAmount,
+            'grandTotal'        => $request->depositAmount + $request->vatAmount,
+            'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
+        ]);
+    }
+
 }
