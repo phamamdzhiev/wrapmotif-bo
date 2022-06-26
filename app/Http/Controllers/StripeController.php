@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\PreviewDesign;
 use AWS\CRT\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,38 @@ class StripeController extends Controller
 
     public function previewPayment(Request $request)
     {
+        $previewOrder = PreviewDesign::createPreviewOrder($request);
+
+        $total = $request->input('customerAmount');
+        $currency = $request->input('customerCurrency');
+
+        $stripe = new StripeClient(env('STRIPE_SECRET'));
+
+        $checkout = $stripe->checkout->sessions->create([
+            'customer_email' => Auth::guard('customers')->user()->email,
+            'mode' => 'payment',
+            'success_url' => env('FRONTEND_URL') . '/cart',
+            'cancel_url' => env('FRONTEND_URL') . '/cart',
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => strtolower($currency),
+                        'unit_amount' => $total * 100,
+                        'product_data' => [
+                            'name' => 'Total amount'
+                        ]
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'payment_intent_data' => [
+                'metadata' => [
+                    'order_id' => 1 //(int)$order->id
+                ]
+            ],
+        ]);
+
+        return response()->json($checkout);
     }
 
     public function customPayment(Request $request)

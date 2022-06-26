@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Akaunting\Money\Money;
 use Akaunting\Money\Currency;
+use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -188,9 +189,31 @@ class PreviewDesign extends Model implements HasMedia
     {
         $result = [];
         foreach ($this->getMedia('collection') as $media) {
-            array_push($result, ['id' => $media->id, 'name' => $media->name, 'fileName' => $media->file_name,  'url' => $media->getFullUrl(), 'mimeType' => $media->mime_type]);
+            array_push($result, ['id' => $media->id, 'name' => $media->name, 'fileName' => $media->file_name, 'url' => $media->getFullUrl(), 'mimeType' => $media->mime_type]);
         }
 
         return $result;
+    }
+
+
+    public static function createPreviewOrder(\Illuminate\Http\Request $request): PreviewDesign
+    {
+        return self::create([
+            'date'              => Carbon::now(),
+            'customerId'        => auth()->user()->id,
+            'productId'         => $request->productId,
+            'vehicleId'         => $request->vehicleId,
+            'vehicleModelId'    => $request->vehicleModelId,
+            'description'       => $request->description,
+            'depositAmount'     => $request->depositAmount,
+            'customerAmount'    => $request->customerAmount,
+            'customerCurrency'  => $request->customerCurrency,
+            'vat'               => $request->vat,
+            'vatType'           => $request->vatType,
+            'vatAmount'         => $request->vatAmount,
+            'customerVatAmount' => $request->customerVatAmount,
+            'grandTotal'        => $request->depositAmount + $request->vatAmount,
+            'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
+        ]);
     }
 }
