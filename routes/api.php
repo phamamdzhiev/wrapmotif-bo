@@ -122,5 +122,11 @@ Route::post('/subscribe', NewsletterController::class);
 Route::get('/config', [ConfigController::class, 'index']);
 Route::get('/exchange-rates', [AjaxController::class, 'exchangeRate']);
 //Stripe webhook routes
-Route::stripeWebhooks('payment/succeed');
+//Route::stripeWebhooks('payment/succeed');g
 Route::get('order/{id}', [OrderController::class, 'getOrder']);
+
+Route::post('payment/succeed', function (\Illuminate\Http\Request $request) {
+    \Illuminate\Support\Facades\Log::emergency(json_encode($request->all()));
+    $request->dd();
+
+});
