@@ -53,7 +53,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ row.grandTotalFormatted }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ row.customerGrandTotalFormatted }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <p class="badge" :class="{ 'bg-green-500' : row.status=='paid', 'bg-yellow-500' : row.status=='pending' }">
+                        <p class="badge" :class="{ 'bg-green-500' : row.status === 'paid', 'bg-yellow-500' : row.status === 'pending' }">
                             {{ row.status }}
                         </p>
                     </td>

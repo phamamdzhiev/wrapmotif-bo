@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Akaunting\Money\Money;
 use Akaunting\Money\Currency;
+use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Tymon\JWTAuth\Claims\Custom;
 
 class CustomOrder extends Model implements HasMedia
 {
@@ -281,5 +283,10 @@ class CustomOrder extends Model implements HasMedia
         }
 
         return $result;
+    }
+
+    public static function createCustomOrder(\Illuminate\Http\Request $request) : CustomOrder
+    {
+        return self::create([]);
     }
 }

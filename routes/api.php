@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\OrderCompletedJob;
+use App\Models\CustomOrder;
 use App\Models\Order;
 use App\Models\PreviewDesign;
 use Illuminate\Support\Facades\Mail;
@@ -144,6 +145,9 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
         } else if ($cart === 'preview') {
             /** @var PreviewDesign $order */
             $order = PreviewDesign::findOrFail($orderID);
+        } else if ($cart === 'custom') {
+            /** @var CustomOrder $order */
+            $order = CustomOrder::findOrFail($orderID);
         }
 
         if (isset($order) && $isPaid) {

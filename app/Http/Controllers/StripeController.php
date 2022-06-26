@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomOrder;
 use App\Models\Order;
 use App\Models\PreviewDesign;
 use AWS\CRT\Log;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
 use Stripe\StripeClient;
+use Tymon\JWTAuth\Claims\Custom;
 
 class StripeController extends Controller
 {
@@ -88,7 +90,7 @@ class StripeController extends Controller
         $checkout = $stripe->checkout->sessions->create([
             'customer_email' => Auth::guard('customers')->user()->email,
             'mode' => 'payment',
-            'success_url' => env('FRONTEND_URL') . '/cart',
+            'success_url' => env('FRONTEND_URL') . '/preview-designs/greeting',
             'cancel_url' => env('FRONTEND_URL') . '/cart',
             'line_items' => [
                 [
@@ -115,5 +117,37 @@ class StripeController extends Controller
 
     public function customPayment(Request $request)
     {
+        dd($request->all());
+
+        $custom = CustomOrder::createCustomOrder($request);
+        $total = $request->input('total');
+        $currency = $request->input('customerCurrency');
+
+        $stripe = new StripeClient(env('STRIPE_SECRET'));
+
+        $checkout = $stripe->checkout->sessions->create([
+            'customer_email' => Auth::guard('customers')->user()->email,
+            'mode' => 'payment',
+            'success_url' => env('FRONTEND_URL') . '/custom-designs/greeting',
+            'cancel_url' => env('FRONTEND_URL') . '/cart',
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => strtolower($currency),
+                        'unit_amount' => $total * 100,
+                        'product_data' => [
+                            'name' => 'Total amount'
+                        ]
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'payment_intent_data' => [
+                'metadata' => [
+                    'cart' => 'preview',
+                    'order_id' => (int)$custom->id
+                ]
+            ],
+        ]);
     }
 }
