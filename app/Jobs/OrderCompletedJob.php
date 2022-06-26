@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use AWS\CRT\Log;
 use Illuminate\Bus\Queueable;
 use App\Mail\OrderCompletedMail;
 use Illuminate\Support\Facades\Mail;
@@ -35,6 +36,8 @@ class OrderCompletedJob implements ShouldQueue
     public function handle()
     {
         $email = new OrderCompletedMail($this->order);
-        Mail::to($this->order->customer->email)->send($email);
+        \Illuminate\Support\Facades\Log::info(json_encode($this->order));
+        \Illuminate\Support\Facades\Log::info(json_encode($this->order->customer));
+        Mail::to($this->order->customer['email'])->send($email);
     }
 }
