@@ -88,7 +88,7 @@ class OrderController extends Controller
         /** @var Order $order */
         $order = Order::find($id);
 
-        $order->update(['status' => 2]);s
+        $order->update(['status' => 2]);
         return \response()->json($order->only('status'));
     }
 
