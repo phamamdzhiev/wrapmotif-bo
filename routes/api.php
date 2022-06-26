@@ -130,8 +130,8 @@ Route::post('payment/succeed', function (\Illuminate\Http\Request $request) {
 
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
 
-        $orderID = $request['data']['object']['charges']['data']['metadata']['order_id'];
-        $isPaid = $request['data']['object']['charges']['data']['paid'];
+        $orderID = $request['data']['object']['metadata']['order_id'];
+        $isPaid = $request['data']['object']['paid'];
         \Illuminate\Support\Facades\Log::info(json_encode($orderID));
         \Illuminate\Support\Facades\Log::info(json_encode($isPaid));
 
