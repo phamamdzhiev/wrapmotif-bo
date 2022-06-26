@@ -201,7 +201,7 @@ class PreviewDesign extends Model implements HasMedia
     {
         return self::create([
             'date'              => Carbon::now(),
-            'customerId'        => Auth::id(),
+            'customerId'        => $request->customerId,
             'productId'         => $request->productId,
             'vehicleId'         => $request->vehicleId,
             'vehicleModelId'    => $request->vehicleModelId,
