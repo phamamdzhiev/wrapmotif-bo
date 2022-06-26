@@ -108,7 +108,7 @@ Route::get('/products/{product}/auth', [ProductController::class, 'showForAuth']
 Route::post('stripe-test', function () {
     Schema::disableForeignKeyConstraints();
     \App\Models\OrderItem::truncate();
-    \App\Models\Order::truncate();
+    Order::truncate();
     Schema::enableForeignKeyConstraints();
     return response()->json('done');
 });
@@ -131,28 +131,20 @@ Route::get('order/{id}', [OrderController::class, 'getOrder']);
 Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\Request $request) {
     $webHookType = $request['type'];
 
-    /** @var \App\Models\Order $order */
-    $order = \App\Models\Order::findOrFail(2);
-
-    dd($order->customer['email']);
-
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
 
-//        $orderID = $request['data']['object']['metadata']['order_id'];
-//        $isPaid = $request['data']['object']['paid'];
+        $orderID = $request['data']['object']['metadata']['order_id'];
+        $isPaid = $request['data']['object']['paid'];
 
-        /** @var \App\Models\Order $order */
-        $order = \App\Models\Order::findOrFail(2);
+        /** @var Order $order */
+        $order = Order::findOrFail($orderID);
 
-        dump($order->customer->email);
-        dump($order->customer()->email);
-
-//        if ($isPaid) {
-//            try {
-//                $order->update(['status' => 'paid']);
-//                Mail::to($request->user())->send(new \App\Mail\OrderCompletedMail($order));
-//            } catch (\Exception $e) {
-//            }
-//        }
+        if ($isPaid) {
+            try {
+                $order->update(['status' => 'paid']);
+                Mail::to($order->customer['email'])->send(new \App\Mail\OrderCompletedMail($order));
+            } catch (\Exception $e) {
+            }
+        }
     }
 });
