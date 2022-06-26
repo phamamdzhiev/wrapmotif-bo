@@ -15,9 +15,7 @@ return [
      * https://stripe.com/docs/api#event_types.
      */
     'jobs' => [
-//        'payment_intent_succeeded' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
-//        'payment_intent_payment_failed' => \App\Jobs\StripeWebhooks\PaymentSucceed::class,
-        'payment_intent_succeeded' => \App\Jobs\StripeWebhooks\ChargeSucceedJob::class,
+        'charge_succeeded' => \App\Jobs\StripeWebhooks\ChargeSucceededJob::class,
     ],
 
     /*
