@@ -38,7 +38,10 @@ class DownloadMediaController extends Controller
     public function order(Order $order)
     {
         if (auth()->user()->id == $order->customerId) {
-            $productIds = $order->orderItems()->pluck('product_id')->toArray();
+            $productIds = $order->orderItems()
+                ->where(['status', '=', 'paid'])
+                ->pluck('product_id')
+                ->toArray();
 
             // Let's get some media.
             $downloads = Media::whereIn('model_id', $productIds)->where('model_type', Product::class)
