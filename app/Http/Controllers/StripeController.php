@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomOrderRequest;
 use App\Models\CustomOrder;
 use App\Models\Order;
 use App\Models\PreviewDesign;
@@ -10,6 +11,7 @@ use AWS\CRT\Log;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Stripe\Checkout\Session;
 use Stripe\StripeClient;
 use Tymon\JWTAuth\Claims\Custom;
@@ -115,12 +117,39 @@ class StripeController extends Controller
         return response()->json($checkout);
     }
 
-    public function customPayment(Request $request)
+    public function customPayment(CustomOrderRequest $request): JsonResponse
     {
-        dd($request->all());
 
-        $custom = CustomOrder::createCustomOrder($request);
-        $total = $request->input('total');
+        $customOrder =  DB::transaction(function () use ($request) {
+            $customOrder = CustomOrder::create(array_merge($request->except('colors', 'tags', 'products', 'vehiclePhotos', 'referenceDesigns', 'token'), [
+                'grandTotal'         => $request->depositAmount + $request->vatAmount,
+                'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
+            ]));
+
+            $customOrder->colors()->sync(explode(",", $request->colors));
+            $customOrder->tags()->sync(explode(",", $request->tags));
+            $customOrder->products()->sync(explode(",", $request->products));
+
+            if ($request->hasFile('vehiclePhotos')) {
+                $customOrder->addMedia($request->file('vehiclePhotos'))->toMediaCollection('vehicle_photos');
+                // foreach ($request->file('vehiclePhotos') as $file) {
+                //     $customOrder->addMedia($file)->toMediaCollection('vehicle_photos');
+                // }
+            }
+
+            if ($request->hasFile('referenceDesigns')) {
+                $customOrder->addMedia($request->file('referenceDesigns'))->toMediaCollection('reference_designs');
+                // foreach ($request->file('referenceDesigns') as $file) {
+                //     $customOrder->addMedia($file)->toMediaCollection('reference_designs');
+                // }
+            }
+
+            return $customOrder;
+        });
+
+
+
+        $total = $request->input('grandTotal');
         $currency = $request->input('customerCurrency');
 
         $stripe = new StripeClient(env('STRIPE_SECRET'));
@@ -145,9 +174,11 @@ class StripeController extends Controller
             'payment_intent_data' => [
                 'metadata' => [
                     'cart' => 'preview',
-                    'order_id' => (int)$custom->id
+                    'order_id' => (int)$customOrder->id
                 ]
             ],
         ]);
+
+        return response()->json($checkout);
     }
 }
