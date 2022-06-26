@@ -120,32 +120,32 @@ class StripeController extends Controller
     public function customPayment(CustomOrderRequest $request): JsonResponse
     {
 
-//        $customOrder =  DB::transaction(function () use ($request) {
-//            $customOrder = CustomOrder::create(array_merge($request->except('colors', 'tags', 'products', 'vehiclePhotos', 'referenceDesigns', 'token'), [
-//                'grandTotal'         => $request->depositAmount + $request->vatAmount,
-//                'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
-//            ]));
-//
-//            $customOrder->colors()->sync(explode(",", $request->colors));
-//            $customOrder->tags()->sync(explode(",", $request->tags));
-//            $customOrder->products()->sync(explode(",", $request->products));
-//
-//            if ($request->hasFile('vehiclePhotos')) {
-//                $customOrder->addMedia($request->file('vehiclePhotos'))->toMediaCollection('vehicle_photos');
-//                // foreach ($request->file('vehiclePhotos') as $file) {
-//                //     $customOrder->addMedia($file)->toMediaCollection('vehicle_photos');
-//                // }
-//            }
-//
-//            if ($request->hasFile('referenceDesigns')) {
-//                $customOrder->addMedia($request->file('referenceDesigns'))->toMediaCollection('reference_designs');
-//                // foreach ($request->file('referenceDesigns') as $file) {
-//                //     $customOrder->addMedia($file)->toMediaCollection('reference_designs');
-//                // }
-//            }
-//
-//            return $customOrder;
-//        });
+        $customOrder =  DB::transaction(function () use ($request) {
+            $customOrder = CustomOrder::create(array_merge($request->except('colors', 'tags', 'products', 'vehiclePhotos', 'referenceDesigns', 'token'), [
+                'grandTotal'         => $request->depositAmount + $request->vatAmount,
+                'customerGrandTotal' => $request->customerAmount + $request->customerVatAmount,
+            ]));
+
+            $customOrder->colors()->sync(explode(",", $request->colors));
+            $customOrder->tags()->sync(explode(",", $request->tags));
+            $customOrder->products()->sync(explode(",", $request->products));
+
+            if ($request->hasFile('vehiclePhotos')) {
+                $customOrder->addMedia($request->file('vehiclePhotos'))->toMediaCollection('vehicle_photos');
+                // foreach ($request->file('vehiclePhotos') as $file) {
+                //     $customOrder->addMedia($file)->toMediaCollection('vehicle_photos');
+                // }
+            }
+
+            if ($request->hasFile('referenceDesigns')) {
+                $customOrder->addMedia($request->file('referenceDesigns'))->toMediaCollection('reference_designs');
+                // foreach ($request->file('referenceDesigns') as $file) {
+                //     $customOrder->addMedia($file)->toMediaCollection('reference_designs');
+                // }
+            }
+
+            return $customOrder;
+        });
 
 
         $total = $request->input('grandTotal');
@@ -173,7 +173,7 @@ class StripeController extends Controller
             'payment_intent_data' => [
                 'metadata' => [
                     'cart' => 'custom',
-                    'order_id' => 1 //(int)$customOrder->id
+                    'order_id' => (int)$customOrder->id
                 ]
             ],
         ]);
