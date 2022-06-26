@@ -134,7 +134,7 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
     /** @var \App\Models\Order $order */
     $order = \App\Models\Order::findOrFail(2);
 
-    dd($order->customer);
+    dd($order->customer['email']);
 
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
 
