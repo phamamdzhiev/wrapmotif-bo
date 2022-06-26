@@ -80,7 +80,7 @@ class StripeController extends Controller
     {
         $previewOrder = PreviewDesign::createPreviewOrder($request);
 
-        $total = $request->input('customerAmount');
+        $total = $request->input('total');
         $currency = $request->input('customerCurrency');
 
         $stripe = new StripeClient(env('STRIPE_SECRET'));
