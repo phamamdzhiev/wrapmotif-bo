@@ -5,6 +5,7 @@ namespace App\Models;
 use Akaunting\Money\Money;
 use Akaunting\Money\Currency;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -200,7 +201,7 @@ class PreviewDesign extends Model implements HasMedia
     {
         return self::create([
             'date'              => Carbon::now(),
-            'customerId'        => auth()->user()->id,
+            'customerId'        => Auth::id(),
             'productId'         => $request->productId,
             'vehicleId'         => $request->vehicleId,
             'vehicleModelId'    => $request->vehicleModelId,
