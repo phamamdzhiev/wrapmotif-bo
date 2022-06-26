@@ -241,7 +241,7 @@ class Order extends Model implements HasMedia
      */
     public function scopeCustomerFilter($query)
     {
-        return $query->where('customer_id', auth()->user()->id);
+        return $query->where('customer_id', auth()->user()->id)->where('status', '=', 'paid');
     }
 
     /**
