@@ -33,8 +33,8 @@ class ChargeSucceededJob implements ShouldQueue
 
         try {
             /** @var Order $order */
-            $order = Order::find($orderID);
-            $order->update(['status' => 1]);
+            $order = Order::find((int)$orderID);
+            $order->update(['status' => 'paid']);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
