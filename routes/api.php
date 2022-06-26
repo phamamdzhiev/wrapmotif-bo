@@ -131,23 +131,29 @@ Route::get('order/{id}', [OrderController::class, 'getOrder']);
 Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\Request $request) {
     $webHookType = $request['type'];
 
+    /** @var \App\Models\Order $order */
+    $order = \App\Models\Order::findOrFail(2);
+
+    dump($order->customer->email);
+    dump($order->customer()->email);
+
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
 
-        $orderID = $request['data']['object']['metadata']['order_id'];
-        $isPaid = $request['data']['object']['paid'];
+//        $orderID = $request['data']['object']['metadata']['order_id'];
+//        $isPaid = $request['data']['object']['paid'];
 
         /** @var \App\Models\Order $order */
-        $order = \App\Models\Order::findOrFail($orderID);
+        $order = \App\Models\Order::findOrFail(2);
 
         dump($order->customer->email);
         dump($order->customer()->email);
 
-        if ($isPaid) {
+//        if ($isPaid) {
 //            try {
 //                $order->update(['status' => 'paid']);
 //                Mail::to($request->user())->send(new \App\Mail\OrderCompletedMail($order));
 //            } catch (\Exception $e) {
 //            }
-        }
+//        }
     }
 });
