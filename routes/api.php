@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\OrderCompletedJob;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\VehicleController;
@@ -137,7 +139,12 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
         $order = \App\Models\Order::findOrFail($orderID);
 
         if ($isPaid) {
-            $order->update(['status' => 'paid']);
+            try {
+                $order->update(['status' => 'paid']);
+                OrderCompletedJob::dispatch(Order::class);
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error(json_encode($e->getMessage()));
+            }
         }
     }
 });

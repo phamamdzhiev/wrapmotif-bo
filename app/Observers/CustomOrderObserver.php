@@ -4,8 +4,10 @@ namespace App\Observers;
 
 use App\Jobs\CustomOrderJob;
 use App\Jobs\NotifyUserJob;
+use App\Jobs\OrderCompletedJob;
 use App\Models\CustomOrder;
 use App\Jobs\CustomOrderCompletedJob;
+use App\Models\Order;
 
 class CustomOrderObserver
 {
