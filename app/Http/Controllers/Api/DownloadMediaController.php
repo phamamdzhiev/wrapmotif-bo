@@ -39,7 +39,6 @@ class DownloadMediaController extends Controller
     {
         if (auth()->user()->id == $order->customerId) {
             $productIds = $order->orderItems()
-                ->where(['status', '=', 'paid'])
                 ->pluck('product_id')
                 ->toArray();
 
