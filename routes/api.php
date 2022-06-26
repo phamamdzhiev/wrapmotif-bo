@@ -2,6 +2,7 @@
 
 use App\Jobs\OrderCompletedJob;
 use App\Models\Order;
+use App\Models\PreviewDesign;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MediaController;
@@ -134,15 +135,21 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
 
         $orderID = $request['data']['object']['metadata']['order_id'];
+        $cart = $request['data']['object']['metadata']['cart'];
         $isPaid = $request['data']['object']['paid'];
 
-        /** @var Order $order */
-        $order = Order::findOrFail($orderID);
+        if ($cart === 'design') {
+            /** @var Order $order */
+            $order = Order::findOrFail($orderID);
+        } else if ($cart === 'preview') {
+            /** @var PreviewDesign $order */
+            $order = PreviewDesign::findOrFail($orderID);
+        }
 
-        if ($isPaid) {
+        if (isset($order) && $isPaid) {
             try {
                 $order->update(['status' => 'paid']);
-                Mail::to($order->customer['email'])->send(new \App\Mail\OrderCompletedMail($order));
+//                Mail::to($order->customer['email'])->send(new \App\Mail\OrderCompletedMail($order));
             } catch (\Exception $e) {
             }
         }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\PreviewDesign;
 use AWS\CRT\Log;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
@@ -16,7 +17,7 @@ class StripeController extends Controller
     /**
      * @throws \Exception
      */
-    public function designPayment(Request $request): \Illuminate\Http\JsonResponse
+    public function designPayment(Request $request): JsonResponse
     {
         $total = $request->input('total');
         $currency = $request->input('currency');
@@ -59,6 +60,7 @@ class StripeController extends Controller
                 ],
                 'payment_intent_data' => [
                     'metadata' => [
+                        'cart' => 'design',
                         'order_id' => (int)$order->id
                     ]
                 ],
@@ -74,7 +76,7 @@ class StripeController extends Controller
     {
     }
 
-    public function previewPayment(Request $request)
+    public function previewPayment(Request $request): JsonResponse
     {
         $previewOrder = PreviewDesign::createPreviewOrder($request);
 
@@ -102,7 +104,8 @@ class StripeController extends Controller
             ],
             'payment_intent_data' => [
                 'metadata' => [
-                    'order_id' => 1 //(int)$order->id
+                    'cart' => 'preview',
+                    'order_id' => (int)$previewOrder->id
                 ]
             ],
         ]);
