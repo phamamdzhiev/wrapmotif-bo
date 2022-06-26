@@ -53,7 +53,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ row.grandTotalFormatted }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ row.customerGrandTotalFormatted }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <strong class="text-uppercase">{{ row.status }}</strong>
+                        <strong class="uppercase">{{ row.status }}</strong>
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

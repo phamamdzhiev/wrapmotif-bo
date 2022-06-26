@@ -125,7 +125,7 @@ Route::get('/exchange-rates', [AjaxController::class, 'exchangeRate']);
 //Route::stripeWebhooks('payment/succeed');g
 Route::get('order/{id}', [OrderController::class, 'getOrder']);
 
-Route::post('payment/succeed', function (\Illuminate\Http\Request $request) {
+Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\Request $request) {
     $webHookType = $request['type'];
 
     if (isset($webHookType) && $webHookType === 'charge.succeeded') {
