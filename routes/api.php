@@ -157,7 +157,7 @@ Route::post('v1/payment/succeed/ofjHHS123Noipeqwp', function (\Illuminate\Http\R
         if (isset($order) && $isPaid) {
             try {
                 $order->update(['status' => 'paid']);
-//                Mail::to($order->customer['email'])->send(new \App\Mail\OrderCompletedMail($order));
+                Mail::to($order->customer['email'])->send(new \App\Mail\OrderCompletedMail($order));
             } catch (\Exception $e) {
             }
         }
