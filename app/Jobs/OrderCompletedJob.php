@@ -36,8 +36,6 @@ class OrderCompletedJob implements ShouldQueue
     public function handle()
     {
         $email = new OrderCompletedMail($this->order);
-        \Illuminate\Support\Facades\Log::info($this->order);
-//        \Illuminate\Support\Facades\Log::info(json_encode($this->order));
-//        Mail::to($this->order->customer['email'])->send($email);
+        Mail::to($this->order->customer->email)->send($email);
     }
 }
