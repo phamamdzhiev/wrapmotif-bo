@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        return ApiResource::collection(Product::filter($request->all())->where('status', PublishStatus::PUBLISHED())->sorted()->paginate(10));
+        return ApiResource::collection(Product::filter($request->all())->where('status', PublishStatus::PUBLISHED())->sorted()->paginate(15));
     }
 
     /**
