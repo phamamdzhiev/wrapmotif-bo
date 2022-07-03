@@ -185,6 +185,9 @@ export default {
 	props: {
 		order: Object,
 	},
+    mounted() {
+        console.log('ORder ====', this.order)
+    }
 };
 </script>
 

@@ -223,7 +223,7 @@ export default {
 			return false;
 		},
         currencySymbol(value, currency){
-            if (currency === "EUR") {
+            if (currency.toUpperCase() === "EUR") {
                 // return "€ " + Math.ceil(value);
                 return "€ " + this.formatNumber(value);
             } else {

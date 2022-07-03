@@ -25,10 +25,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     * @return ApiResource
      */
-    public function show(Request $request, Product $product)
+    public function show(Request $request, Product $product): ApiResource
     {
         $relatedProducts = Product::whereHas('tags', function ($tag) use ($product) {
             $tag->whereIn('id', $product->tags()->pluck('id')->toArray());
@@ -54,7 +55,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return \Illuminate\Http\Response
      */
     public function showForAuth(Request $request, Product $product)
