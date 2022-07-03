@@ -250,6 +250,7 @@ class Order extends Model implements HasMedia
      */
     public static function createOrder(\Illuminate\Http\Request $request) : Order
     {
+        $request->dd();
         return self::create([
             'date' => Carbon::now(),
             'customerId' => $request->customerId,

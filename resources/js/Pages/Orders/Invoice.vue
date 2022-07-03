@@ -223,11 +223,13 @@ export default {
 			return false;
 		},
         currencySymbol(value, currency){
-            if (currency.toUpperCase() === "EUR") {
+            if (currency === "EUR") {
+                console.log('kur',currency)
                 // return "€ " + Math.ceil(value);
                 return "€ " + this.formatNumber(value);
             } else {
                 // return "$ " + Math.ceil(value);
+                console.log('kur',currency)
                 return "$ " + this.formatNumber(value);
             }
         },
